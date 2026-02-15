@@ -1,0 +1,20 @@
+
+.pending-badge {
+  background-color: rgba(211, 209, 254, 0.93) !important;
+  color: rgba(49, 96, 252, 0.93) !important;
+}
+
+.negotating-badge {
+  background-color: rgba(254, 229, 209, 0.93) !important;
+  color: rgba(252, 140, 49, 0.93) !important;
+}
+
+.failed-badge {
+  background-color: rgba(254, 209, 235, 0.93) !important;
+  color: rgba(252, 49, 147, 0.93) !important;
+}
+
+.paid-badge {
+  background-color: rgba(209, 254, 211, 0.93) !important;
+  color: rgba(5, 197, 88, 0.93) !important;
+}
