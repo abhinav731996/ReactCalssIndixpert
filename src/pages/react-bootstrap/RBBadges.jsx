@@ -1,12 +1,14 @@
 import React from "react";
 import { Badge, Table } from "react-bootstrap";
 import { VectorPen } from "react-bootstrap-icons";
+import MyBadge from "../../components/MyBadge";
 
 const RBBadges = () => {
   return (
     <div>
       {/* class pactice */}
-      {/* React bootstrap badges page
+      {/* <Badge as={MyBadge}>Default created badge</Badge>
+      React bootstrap badges page
       <h1>
         Example heading <Badge bg="secondary">New</Badge>
       </h1>
@@ -35,7 +37,8 @@ const RBBadges = () => {
 
 
       {/* Task */}
-
+      <h1> Exercise of Breadcrumb</h1>
+      <br />
       <Table responsive>
         <thead>
           <tr >
@@ -55,7 +58,7 @@ const RBBadges = () => {
             <td>Sales</td>
             <td>$64,000</td>
             <td>Aug 3, 2024</td>
-            <td><Badge pill className="pending-badge">PENDING</Badge></td>
+            <td><Badge pill bg="primary-subtle text-primary">PENDING</Badge></td>
             <td>Full-Time</td>
           </tr>
           

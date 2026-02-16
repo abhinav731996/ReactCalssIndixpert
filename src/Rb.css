@@ -18,3 +18,20 @@
   background-color: rgba(209, 254, 211, 0.93) !important;
   color: rgba(5, 197, 88, 0.93) !important;
 }
+
+
+
+/* for breadcrumb */
+.rb-breadcrumb a {
+  text-decoration: none;
+  color: gray; 
+}
+
+.rb-breadcrumb a:hover {
+  color: black;
+}
+
+
+.breadcrumb-item.active  {
+  color: black;
+}
