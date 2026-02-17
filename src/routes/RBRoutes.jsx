@@ -9,6 +9,10 @@ import RBCards from "../pages/react-bootstrap/RBCards";
 import RBImages from "../pages/react-bootstrap/RBImages";
 import RBListGroup from "../pages/react-bootstrap/RBListGroup";
 import RBFigure from "../pages/react-bootstrap/RBFigure";
+import RBPagination from "../pages/react-bootstrap/RBPagination";
+import RBPrgressBars from "../pages/react-bootstrap/RBPrgressBars";
+import RBTables from "../pages/react-bootstrap/RBTables";
+import RBSpinners from "../pages/react-bootstrap/RBSpinners";
 
 export const routes = createBrowserRouter(
     [
@@ -20,10 +24,14 @@ export const routes = createBrowserRouter(
                 {path:"/rb-breadcrumb", element:<RBBreadcrumb/>},
                 {path:"/rb-buttons", element:<RBButtons/>},
                 {path:"/rb-button-group", element:<RBButtonGroup/>},
-                {path:"/rb-card", element:<RBCards/>},
+                {path:"/rb-cards", element:<RBCards/>},
                 {path:"/rb-images", element:<RBImages/>},
                 {path:"/rb-listgroup", element:<RBListGroup/>},
                 {path:"/rb-figure", element:<RBFigure/>},
+                {path:"/rb-pagination", element:<RBPagination/>},
+                {path:"/rb-progressbar", element:<RBPrgressBars/>},
+                {path:"/rb-spinners", element:<RBSpinners/>},
+                {path:"/rb-table", element:<RBTables/>},
 
             ]
         },
