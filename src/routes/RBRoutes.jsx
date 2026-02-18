@@ -13,6 +13,8 @@ import RBPagination from "../pages/react-bootstrap/RBPagination";
 import RBPrgressBars from "../pages/react-bootstrap/RBPrgressBars";
 import RBTables from "../pages/react-bootstrap/RBTables";
 import RBSpinners from "../pages/react-bootstrap/RBSpinners";
+import RBAccordion from "../pages/react-bootstrap/RBAccordion";
+import RBCarousel from "../pages/react-bootstrap/RBCarousel";
 
 export const routes = createBrowserRouter(
     [
@@ -32,6 +34,8 @@ export const routes = createBrowserRouter(
                 {path:"/rb-progressbar", element:<RBPrgressBars/>},
                 {path:"/rb-spinners", element:<RBSpinners/>},
                 {path:"/rb-table", element:<RBTables/>},
+                {path:"/rb-accordion", element:<RBAccordion/>},
+                {path:"/rb-carousel", element:<RBCarousel/>},
 
             ]
         },
