@@ -43,8 +43,8 @@ function CustomToggle({ children, eventKey, callback }) {
       </div>
 
       <div>
-        <CustomToggle eventKey="1">What are the technology requiremnets?</CustomToggle>
-        <Accordion.Collapse eventKey="1">
+        <CustomToggle eventKey="2">What are the technology requiremnets?</CustomToggle>
+        <Accordion.Collapse eventKey="2">
           <div>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis eos id ipsa incidunt, veniam unde tempore blanditiis voluptatibus? Eos commodi impedit officia sed numquam, laboriosam adipisci excepturi animi in tempore!</div>
         </Accordion.Collapse>
       </div>

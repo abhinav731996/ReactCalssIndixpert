@@ -68,7 +68,7 @@ const SignIn = () => {
                     <div className="col-12">
                       <div className="d-grid">
                         <NavLink
-                          to="/"
+                          to="/rb-home"
                           className="btn bsb-btn-xl btn-primary"
                           type="submit"
                         >

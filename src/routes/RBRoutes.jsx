@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import RBLayout from "../layouts/RBLayout";
+import AuthLayout from "../layouts/AuthLayout";
 import RBHome from "../pages/react-bootstrap/RBHome";
 import RBBadges from "../pages/react-bootstrap/RBBadges";
 import RBBreadcrumb from "../pages/react-bootstrap/RBBreadcrumb";
@@ -15,13 +16,19 @@ import RBTables from "../pages/react-bootstrap/RBTables";
 import RBSpinners from "../pages/react-bootstrap/RBSpinners";
 import RBAccordion from "../pages/react-bootstrap/RBAccordion";
 import RBCarousel from "../pages/react-bootstrap/RBCarousel";
+import SignIn from "../pages/auth/SignIn";
 
 export const routes = createBrowserRouter(
     [
+        {element: <AuthLayout/>,
+            children:[
+                {path:"/", element:<SignIn/>},
+            ]
+        },
         {
             element:<RBLayout/>,
             children:[
-                {path:"/", element:<RBHome/>},
+                {path:"/rb-home", element:<RBHome/>},
                 {path:"/rb-badges", element:<RBBadges/>},
                 {path:"/rb-breadcrumb", element:<RBBreadcrumb/>},
                 {path:"/rb-buttons", element:<RBButtons/>},
