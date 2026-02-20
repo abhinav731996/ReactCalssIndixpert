@@ -55,7 +55,7 @@ const RBCarousel = () => {
                 borderRadius: "50%",
               }}
               >
-              .
+              {" "}
               </Badge>
 
           ))}

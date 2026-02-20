@@ -17,6 +17,9 @@ import RBSpinners from "../pages/react-bootstrap/RBSpinners";
 import RBAccordion from "../pages/react-bootstrap/RBAccordion";
 import RBCarousel from "../pages/react-bootstrap/RBCarousel";
 import SignIn from "../pages/auth/SignIn";
+import RBDropdowns from "../pages/react-bootstrap/RBDropdowns";
+import RBModal from "../pages/react-bootstrap/RBModal";
+import RBNavbarOffcanvas from "../pages/react-bootstrap/RBNavbarOffcanvas";
 
 export const routes = createBrowserRouter(
     [
@@ -43,6 +46,9 @@ export const routes = createBrowserRouter(
                 {path:"/rb-table", element:<RBTables/>},
                 {path:"/rb-accordion", element:<RBAccordion/>},
                 {path:"/rb-carousel", element:<RBCarousel/>},
+                {path:"/rb-dropdown", element:<RBDropdowns/>},
+                {path:"/rb-modal", element:<RBModal/>},
+                {path:"/rb-navbar-off-canvas", element:<RBNavbarOffcanvas/>},
 
             ]
         },

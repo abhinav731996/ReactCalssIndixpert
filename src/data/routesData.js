@@ -17,15 +17,9 @@ export const nonInteractiveRoutesData =[
 export const interactiveRoutesData =[
     {link: "/rb-accordion", menuItem: "Accordion"},
     {link: "/rb-carousel", menuItem: "Carousel"},
-    {link: "/rb-buttons", menuItem: "Buttons"},
-    {link: "/rb-button-group", menuItem: "ButtonGroup"},
-    {link: "/rb-cards", menuItem: "Card"},
-    {link: "/rb-images", menuItem: "Images"},
-    {link: "/rb-listgroup", menuItem: "ListGroup"},
-    {link: "/rb-figure", menuItem: "Figure"},
-    {link: "/rb-pagination", menuItem: "Pagination"},
-    {link: "/rb-progressbar", menuItem: "Progressbar"},
-    {link: "/rb-spinners", menuItem: "Spinners"},
-    {link: "/rb-table", menuItem: "Table"},
-]
+    {link: "/rb-dropdown", menuItem: "Dropdown"},
+    {link: "/rb-modal", menuItem: "Modal"},
+    {link: "/rb-navbar-off-canvas", menuItem: "NavbarOff"},
+    {link: "/rb-", menuItem: ""},
+];
 
