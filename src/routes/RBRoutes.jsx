@@ -20,6 +20,9 @@ import SignIn from "../pages/auth/SignIn";
 import RBDropdowns from "../pages/react-bootstrap/RBDropdowns";
 import RBModal from "../pages/react-bootstrap/RBModal";
 import RBNavbarOffcanvas from "../pages/react-bootstrap/RBNavbarOffcanvas";
+import RBForms from "../pages/react-bootstrap/RBForms";
+import RBOverlays from "../pages/react-bootstrap/RBOverlays";
+import RBNavTabs from "../pages/react-bootstrap/RBNavTabs";
 
 export const routes = createBrowserRouter(
     [
@@ -49,6 +52,9 @@ export const routes = createBrowserRouter(
                 {path:"/rb-dropdown", element:<RBDropdowns/>},
                 {path:"/rb-modal", element:<RBModal/>},
                 {path:"/rb-navbar-off-canvas", element:<RBNavbarOffcanvas/>},
+                {path:"/rb-navtabs", element:<RBNavTabs/>},
+                {path:"/rb-overlays", element:<RBOverlays/>},
+                {path:"/rb-forms", element:<RBForms/>},
 
             ]
         },

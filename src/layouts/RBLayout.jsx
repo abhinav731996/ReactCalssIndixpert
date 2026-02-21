@@ -16,7 +16,7 @@ const RBLayout = () => {
         <Col md={2}>
           <Card>
             <Card.Body>
-              <Accordion defaultActiveKey="0">
+              <Accordion defaultActiveKey="">
                 <Accordion.Item eventKey="0">
                   <Accordion.Header>
                     Non-Interactive Components

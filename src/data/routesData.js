@@ -20,6 +20,9 @@ export const interactiveRoutesData =[
     {link: "/rb-dropdown", menuItem: "Dropdown"},
     {link: "/rb-modal", menuItem: "Modal"},
     {link: "/rb-navbar-off-canvas", menuItem: "NavbarOff"},
+    {link: "/rb-navtabs", menuItem: "NavTabs"},
+    {link: "/rb-overlays", menuItem: "Overlays"},
+    {link: "/rb-forms", menuItem: "Forms"},
     {link: "/rb-", menuItem: ""},
 ];
 
