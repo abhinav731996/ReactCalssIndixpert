@@ -5,7 +5,7 @@ import viteLogo from '/vite.svg'
 import "./Rb.css"
 import { RouterProvider } from 'react-router-dom'
 // import { routes } from './routes/DataModeRoutes'
-import { routes } from './routes/RBRoutes'
+import { routes } from './routes/frontroutes/RBRoutes'
 
 function App() {
 
