@@ -22,7 +22,10 @@ export const interactiveRoutesData =[
     {link: "/rb-navbar-off-canvas", menuItem: "NavbarOff"},
     {link: "/rb-navtabs", menuItem: "NavTabs"},
     {link: "/rb-overlays", menuItem: "Overlays"},
-    {link: "/rb-forms", menuItem: "Forms"},
-    {link: "/rb-", menuItem: ""},
+
 ];
 
+export const formData =[
+    {link: "/rb-forms", menuItem: "Forms"},
+    {link: "/rb-forms-practice", menuItem: "FormsPrtc"},
+]

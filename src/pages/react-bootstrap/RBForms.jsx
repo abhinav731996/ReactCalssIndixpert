@@ -3,7 +3,9 @@ import React from 'react'
 const RBForms = () => {
   return (
     <div>
-      This is form page 
+      <h1>Exercise of Forms</h1>
+      <hr />
+      
     </div>
   )
 }

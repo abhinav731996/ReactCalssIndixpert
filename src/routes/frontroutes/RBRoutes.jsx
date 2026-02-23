@@ -23,6 +23,7 @@ import RBNavbarOffcanvas from "../../pages/react-bootstrap/RBNavbarOffcanvas";
 import RBForms from "../../pages/react-bootstrap/RBForms";
 import RBOverlays from "../../pages/react-bootstrap/RBOverlays";
 import RBNavTabs from "../../pages/react-bootstrap/RBNavTabs";
+import RBFormsPractice from "../../pages/react-bootstrap/RBFormsPractice";
 
 export const routes = createBrowserRouter(
     [
@@ -55,6 +56,7 @@ export const routes = createBrowserRouter(
                 {path:"/rb-navtabs", element:<RBNavTabs/>},
                 {path:"/rb-overlays", element:<RBOverlays/>},
                 {path:"/rb-forms", element:<RBForms/>},
+                {path:"/rb-forms-practice", element:<RBFormsPractice/>},
 
             ]
         },
