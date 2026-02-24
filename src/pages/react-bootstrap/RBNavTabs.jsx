@@ -9,7 +9,7 @@ const RBNavTabs = () => {
       <br />
 
       <Tab.Container id="left-tabs-example" defaultActiveKey="first">
-        <Nav variant="underline primary" defaultActiveKey="first">
+        <Nav className="border-bottom" variant="underline primary" defaultActiveKey="first">
           <Nav.Item>
             <Nav.Link eventKey="first">Active</Nav.Link>
           </Nav.Item>

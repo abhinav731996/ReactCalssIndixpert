@@ -7,7 +7,8 @@ const RBFormsPractive = () => {
   const [password, setPassword] = useState();
   const [message, setMessage] = useState("Hi!")
   const [city, setCity] = useState();
-  const [selectedColor, setSelectedColor] = useState();
+  const [selectedColor, setSelectedColor] = useState([]);
+  const [payment, setPayment] = useState()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -27,6 +28,8 @@ const handlecolorSelection = (e) => {
 
     <Form onSubmit={handleSubmit}>
 
+
+      {/* for main email formatting */}
       <h3 className='text-secondary'>Textbox Control</h3>
 
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -42,6 +45,8 @@ const handlecolorSelection = (e) => {
          <p>your password is: {password}</p>
       </Form.Group>
 
+
+    {/* for textbox control  */}
       <h3 className='text-secondary'>Textbox Control</h3>
 
       <Form.Group className="mb-3" controlId="message" >
@@ -50,6 +55,8 @@ const handlecolorSelection = (e) => {
         your message is: <pre>{message}</pre>
       </Form.Group>
 
+
+      {/* For selected any one of the options */}
       <h3 className='text-secondary'>Select/ComboBox Control</h3>
 
       <Form.Select aria-label="Default select example"  onChange={(e) => setCity(e.target.value)}>
@@ -60,14 +67,16 @@ const handlecolorSelection = (e) => {
       </Form.Select>
         <p>Your City is: {city}</p>
 
-      <h3 className='text-secondary'>Checkbox & radio</h3>
+
+      {/* For checkbox */}
+      <h3 className='text-secondary'>Checkbox </h3>
 
     <Form.Group className="mb-3" controlId="message" >
         <Form.Label>Example checkbox</Form.Label>
-      <Form.Check // prettier-ignore
+      <Form.Check 
             type="checkbox"
             id="red"
-            label="red-color"
+            label="Red-color"
             value="red"
             onChange={handlecolorSelection}
             />
@@ -75,20 +84,63 @@ const handlecolorSelection = (e) => {
           <Form.Check
             // disabled
             type="checkbox"
-            label="green"
+            label="Green"
             id="green-color"
             value="green"
             onChange={handlecolorSelection}
             />
           <Form.Check
             type="checkbox"
-            label="blue"
+            label="Blue"
             id="blue-color"
             value="blue"
             onChange={handlecolorSelection}
           />
       </Form.Group>
-      <p>Selected colors: {JSON.stringify(selectedColor)}</p>
+      <p>Selected colors: {" "}
+        {/* {JSON.stringify(selectedColor)} */}
+        {/* {selectedColor.join(", ")} */}
+        {selectedColor.length > 0 ? selectedColor.join(", ") : "None"}
+        </p>
+
+
+        {/* For Radio buttons */}
+      <h3 className='text-secondary'>Radio</h3>
+
+    <Form.Group className="mb-3" controlId="message" >
+        <Form.Label>Select the payment method</Form.Label>
+      <Form.Check 
+            type="radio"
+            id="Creadit-card"
+            label="Creadit-card"
+            value="Creadit-card"
+            name="paymentType"
+            onChange={(e) => setPayment(e.target.value)}
+            />
+
+          <Form.Check
+            // disabled
+            type="radio"
+            label="Debit-card"
+            id="Debit-card"
+            value="Debit-card"
+            name="paymentType"
+            onChange={(e) => setPayment(e.target.value)}
+            />
+          <Form.Check
+            type="radio"
+            label="UPI"
+            id="UPI"
+            value="UPI"
+            name="paymentType"
+            onChange={(e) => setPayment(e.target.value)}
+          />
+      </Form.Group>
+      <p>Selected Payment: {" "}
+        {/* {JSON.stringify(selectedColor)} */}
+        {/* {selectedColor.join(", ")} */}
+        {payment ? payment : "None"}
+        </p>
     </Form>
 
     <br />
