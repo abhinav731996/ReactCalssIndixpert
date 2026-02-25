@@ -24,6 +24,7 @@ import RBForms from "../../pages/react-bootstrap/RBForms";
 import RBOverlays from "../../pages/react-bootstrap/RBOverlays";
 import RBNavTabs from "../../pages/react-bootstrap/RBNavTabs";
 import RBFormsPractice from "../../pages/react-bootstrap/RBFormsPractice";
+import RBFomicYupForm from "../../pages/react-bootstrap/RBFomicYupForm";
 
 export const routes = createBrowserRouter(
     [
@@ -57,6 +58,7 @@ export const routes = createBrowserRouter(
                 {path:"/rb-overlays", element:<RBOverlays/>},
                 {path:"/rb-forms", element:<RBForms/>},
                 {path:"/rb-forms-practice", element:<RBFormsPractice/>},
+                {path:"/rb-fomic-yup-form", element:<RBFomicYupForm/>},
 
             ]
         },

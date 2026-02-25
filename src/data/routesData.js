@@ -28,4 +28,5 @@ export const interactiveRoutesData =[
 export const formData =[
     {link: "/rb-forms", menuItem: "Forms"},
     {link: "/rb-forms-practice", menuItem: "FormsPrtc"},
+    {link: "/rb-fomic-yup-form", menuItem: "FomicYupForm"},
 ]
