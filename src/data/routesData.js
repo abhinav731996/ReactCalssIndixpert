@@ -27,6 +27,10 @@ export const interactiveRoutesData =[
 
 export const formData =[
     {link: "/rb-forms", menuItem: "Forms"},
-    {link: "/rb-forms-practice", menuItem: "FormsPrtc"},
-    {link: "/rb-fomic-yup-form", menuItem: "FomicYupForm"},
+    {link: "/rb-forms-practice", menuItem: "Forms Practice"},
+    {link: "/rb-fomic-yup-form", menuItem: "Fomic Yup Form"},
+    {link: "/rb-basic-form-validation", menuItem: "Basic Form Validation"},
+    {link: "/rb-hook-form-validation", menuItem: "RHF Validation"},
+    {link: "/rb-hook-form-validation-yup", menuItem: "RHF Validation Yup"},
 ]
+

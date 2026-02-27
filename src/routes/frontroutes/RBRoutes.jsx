@@ -25,6 +25,9 @@ import RBOverlays from "../../pages/react-bootstrap/RBOverlays";
 import RBNavTabs from "../../pages/react-bootstrap/RBNavTabs";
 import RBFormsPractice from "../../pages/react-bootstrap/RBFormsPractice";
 import RBFomicYupForm from "../../pages/react-bootstrap/RBFomicYupForm";
+import BasicFormValidation from "../../pages/react-bootstrap/BasicFormValidation";
+import RHFValidation from "../../pages/react-bootstrap/RHFValidation";
+import RHFValidationYup from "../../pages/react-bootstrap/RHFValidationYup";
 
 export const routes = createBrowserRouter(
     [
@@ -59,6 +62,9 @@ export const routes = createBrowserRouter(
                 {path:"/rb-forms", element:<RBForms/>},
                 {path:"/rb-forms-practice", element:<RBFormsPractice/>},
                 {path:"/rb-fomic-yup-form", element:<RBFomicYupForm/>},
+                {path:"/rb-basic-form-validation", element:<BasicFormValidation/>},
+                {path:"/rb-hook-form-validation", element:<RHFValidation/>},
+                {path:"/rb-hook-form-validation-yup", element:<RHFValidationYup/>},
 
             ]
         },
