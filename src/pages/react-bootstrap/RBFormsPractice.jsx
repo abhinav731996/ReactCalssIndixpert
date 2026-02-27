@@ -141,10 +141,10 @@ const handlecolorSelection = (e) => {
         {/* {selectedColor.join(", ")} */}
         {payment ? payment : "None"}
         </p>
-    </Form>
-
     <br />
     <Button type="submit">Submit</Button>
+    </Form>
+
     </div>
   )
 }

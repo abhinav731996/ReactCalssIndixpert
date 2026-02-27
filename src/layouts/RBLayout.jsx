@@ -17,11 +17,22 @@ import {
 } from "../data/routesData";
 
 const RBLayout = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  // ✅ Load initial mode from localStorage
+  const [darkMode, setDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem("theme");
+    return savedTheme === "dark";
+  });
+
+  // ✅ Apply theme + save to localStorage
   useEffect(() => {
-    const htmlElement = document.querySelector("html");
-    htmlElement.setAttribute("data-bs-theme", darkMode ? "dark" : "light");
+    const htmlElement = document.documentElement;
+
+    const theme = darkMode ? "dark" : "light";
+    htmlElement.setAttribute("data-bs-theme", theme);
+
+    localStorage.setItem("theme", theme);
   }, [darkMode]);
+
   return (
     <Container fluid>
       <Row>
@@ -31,7 +42,9 @@ const RBLayout = () => {
             onClick={() => setDarkMode(!darkMode)}
             className="me-2 rounded-5 p-3"
             bg={darkMode ? "light" : "dark"}
+            text={darkMode ? "dark" : "light"}
             role="button"
+            style={{ cursor: "pointer" }}
           >
             {darkMode ? <Sun size={20} /> : <Moon size={20} />}
           </Badge>
