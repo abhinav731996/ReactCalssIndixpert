@@ -150,3 +150,4 @@ const handlecolorSelection = (e) => {
 }
 
 export default RBFormsPractive
+
