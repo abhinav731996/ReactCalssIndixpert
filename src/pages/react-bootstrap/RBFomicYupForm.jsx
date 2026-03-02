@@ -132,7 +132,7 @@ const RBFomicYupForm = () => {
                 </InputGroup>
               </Form.Group>
 
-              
+              {/* City */}
               <Form.Group as={Col} md="4" controlId="validationFormik03">
                 <Form.Label>City</Form.Label>
                 <Form.Control
@@ -148,6 +148,8 @@ const RBFomicYupForm = () => {
                   {errors.city}
                 </Form.Control.Feedback>
               </Form.Group>
+
+              {/* State */}
               <Form.Group as={Col} md="4" controlId="validationFormik04">
                 <Form.Label>State</Form.Label>
                 <Form.Control
@@ -162,6 +164,8 @@ const RBFomicYupForm = () => {
                   {errors.state}
                 </Form.Control.Feedback>
               </Form.Group>
+
+              {/* Zip */}
               <Form.Group as={Col} md="3" controlId="validationFormik05">
                 <Form.Label>Zip</Form.Label>
                 <Form.Control
