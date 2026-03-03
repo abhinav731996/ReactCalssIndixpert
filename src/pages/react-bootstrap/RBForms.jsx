@@ -43,7 +43,7 @@ const RBForms = () => {
   });
   return (
     <div>
-      <h1>Exercise of Forms with yup</h1>
+      <h1>Exercise of Forms with formic, yup</h1>
       <hr />
       <Formik
         validationSchema={schema}
@@ -65,7 +65,7 @@ const RBForms = () => {
           termsandconditions: false,
         }}
       >
-        {({ handleSubmit, handleChange, values, touched, errors }) => (
+        {({ handleSubmit, handleChange, values, errors }) => (
           <Form noValidate onSubmit={handleSubmit}>
             <pre>{JSON.stringify(errors, null, 2)}</pre>
 

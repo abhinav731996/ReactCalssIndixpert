@@ -7,9 +7,12 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 
 const BasicFormValidation = () => {
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("Hi!");
+  const [state, setState] = useState("");
   const [city, setCity] = useState("");
   const [selectedColor, setSelectedColor] = useState([]);
   const [payment, setPayment] = useState("");
@@ -51,24 +54,44 @@ const BasicFormValidation = () => {
       <br />
 
       <Form onSubmit={handleSubmit}>
+        <Row className="mb-3">
 
+          {/* For first name */}
+          <Form.Group as={Col} controlId="validationFormik01">
+            <Form.Label>First name</Form.Label>
+            <Form.Control
+              type="text"
+              value={firstname}
+              placeholder="Enter your first name"
+              onChange={(e) => setFirstname(e.target.value)}
+              required
+            />
+            <Form.Control.Feedback type="invalid">
+              First name is required
+            </Form.Control.Feedback>
+          </Form.Group>
+
+
+            {/* For last name */}
+           <Form.Group as={Col}>
+            <Form.Label>Last Name</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              placeholder="Enter your last name"
+              value={lastname}
+              onChange={(e) => setLastname(e.target.value)}
+            />
+            <Form.Control.Feedback type="invalid">
+              Last name is required
+            </Form.Control.Feedback>
+          </Form.Group>
+        </Row>
 
         <Row className="mb-3">
-          <Form.Group as={Col} controlId="validationFormik01">
-                <Form.Label>First name</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="firstname"
-                  value={values.firstname}
-                  onChange={handleChange}
-                  // isValid={touched.firstname && !errors.firstname}
-                  isInvalid={!!errors.firstname}
-                />
-            </Form.Group>
-        </Row>
-        {/* for main email formatting */}
 
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        {/* for main email formatting */}
+        <Form.Group as={Col} className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Email address</Form.Label>
           <Form.Control
             type="email"
@@ -78,26 +101,77 @@ const BasicFormValidation = () => {
             autoComplete="username"
             onChange={(e) => setEmail(e.target.value)}
           />
-          <p>your email is: {email}</p>
+          <Form.Control.Feedback type="invalid">
+              Enter valid email
+            </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+
+
+        {/* For password */}
+        <Form.Group as={Col} className="mb-3" controlId="exampleForm.ControlInput2">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
             value={password}
             required
+            minLength={4}
+            maxLength={10}
+            pattern="^(?=.*[0-9]).{6,}$"
             placeholder="Enter password"
             autoComplete="current-password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <p>your password is: {password}</p>
+          <Form.Control.Feedback type="invalid">
+              Enter valid Password
+            </Form.Control.Feedback>
         </Form.Group>
+        </Row>
 
+
+        <Row className="mb-3">
+
+          {/* For state */}
+          <Form.Group as={Col}>
+            <Form.Label>State</Form.Label>
+            <Form.Select
+              required
+              name="state"
+              value={state}
+              onChange={(e) => setState(e.target.value)}
+            >
+              <option value="">Choose...</option>
+              <option>Haryana</option>
+              <option>Delhi</option>
+              <option>Rajasthan</option>
+            </Form.Select>
+            <Form.Control.Feedback type="invalid">
+              Please select state
+            </Form.Control.Feedback>
+          </Form.Group>
+
+          <Form.Group as={Col}>
+            <Form.Label>City</Form.Label>
+            <Form.Select
+              required
+              name="city"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+            >
+              <option value="">Choose...</option>
+              <option>Gurgaon</option>
+              <option>Rohtak</option>
+              <option>Jaipur</option>
+            </Form.Select>
+            <Form.Control.Feedback type="invalid">
+              Please select city
+            </Form.Control.Feedback>
+          </Form.Group>
+        </Row>
         {/* for textbox control  */}
         <h3 className="text-secondary">Textbox Control</h3>
 
         <Form.Group className="mb-3" controlId="message">
-          <Form.Label>Example textarea</Form.Label>
+          <Form.Label>Address</Form.Label>
           <Form.Control
             as="textarea"
             rows={3}
