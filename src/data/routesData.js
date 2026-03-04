@@ -32,5 +32,7 @@ export const formData =[
     {link: "/rb-basic-form-validation", menuItem: "Basic Form Validation"},
     {link: "/rb-hook-form-validation", menuItem: "RHF Validation"},
     {link: "/rb-hook-form-validation-yup", menuItem: "RHF Validation Yup"},
+    {link: "/rb-hook-form", menuItem: "RHF Form"},
+    {link: "/rb-hook-form-yup", menuItem: "RHF Form Yup"},
 ]
 

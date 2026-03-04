@@ -28,6 +28,8 @@ import RBFomicYupForm from "../../pages/react-bootstrap/RBFomicYupForm";
 import BasicFormValidation from "../../pages/react-bootstrap/BasicFormValidation";
 import RHFValidation from "../../pages/react-bootstrap/RHFValidation";
 import RHFValidationYup from "../../pages/react-bootstrap/RHFValidationYup";
+import RHFForm from "../../pages/react-bootstrap/RHFForm";
+import RHFFormYup from "../../pages/react-bootstrap/RHFFormYup";
 
 export const routes = createBrowserRouter(
     [
@@ -65,6 +67,8 @@ export const routes = createBrowserRouter(
                 {path:"/rb-basic-form-validation", element:<BasicFormValidation/>},
                 {path:"/rb-hook-form-validation", element:<RHFValidation/>},
                 {path:"/rb-hook-form-validation-yup", element:<RHFValidationYup/>},
+                {path:"/rb-hook-form", element:<RHFForm/>},
+                {path:"/rb-hook-form-yup", element:<RHFFormYup/>},
 
             ]
         },
