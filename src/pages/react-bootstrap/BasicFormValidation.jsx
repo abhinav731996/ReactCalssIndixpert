@@ -149,6 +149,7 @@ const BasicFormValidation = () => {
             </Form.Control.Feedback>
           </Form.Group>
 
+          {/* For City */}
           <Form.Group as={Col}>
             <Form.Label>City</Form.Label>
             <Form.Select

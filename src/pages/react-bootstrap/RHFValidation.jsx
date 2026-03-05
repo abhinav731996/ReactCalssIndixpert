@@ -1,14 +1,26 @@
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { ToastContainer, toast } from "react-toastify";
 
 const RHFValidation = () => {
   const {
     formState: { errors },
     register,
     handleSubmit,
+    reset,
   } = useForm();
+  // {
+  // defaultValues: {
+  //   firstname:" ",
+  //   lastname:" "
+  // }}
+  // const handleOnSubmit = (data) => {
+  //   console.log(data);
+  // };
   const handleOnSubmit = (data) => {
     console.log(data);
+    toast.success("Form Submitted Successfully");
+    reset(); //ye form ko blank kr dega
   };
   return (
     <div>
@@ -100,16 +112,12 @@ const RHFValidation = () => {
             <Form.Group className="mb-3" controlId="phone">
               <Form.Label>Phone No.</Form.Label>
               <Form.Control
-                type="number"
+                type="text"
                 {...register("phone", {
-                  required: "The phone is required.",
-                  minLength: {
-                    value: 10,
-                    message: "Phone number must be of 10 digits",
-                  },
-                  maxLength: {
-                    value: 10,
-                    message: "Phone number must be of 10 digits",
+                  required: "Phone number is required",
+                  pattern: {
+                    value: /^[0-9]{10}$/,
+                    message: "Phone number must be 10 digits",
                   },
                 })}
               />
@@ -136,6 +144,23 @@ const RHFValidation = () => {
         </Row>
 
         <Row>
+          {/* For Country */}
+          <Col md={6}>
+            <Form.Group className="mb-3" controlId="country">
+              <Form.Label>Country</Form.Label>
+              <Form.Select
+                {...register("country", {
+                  required: "The country is required.",
+                })}
+              >
+                <option value="">Select Country</option>
+                <option value="India">India</option>
+                <option value="USA">USA</option>
+                <option value="Japan">Japan</option>
+              </Form.Select>
+              <div className="text-danger">{errors?.country?.message}</div>
+            </Form.Group>
+          </Col>
           {/* For State */}
           <Col md={6}>
             <Form.Group className="mb-3" controlId="state">
@@ -151,25 +176,238 @@ const RHFValidation = () => {
               <div className="text-danger">{errors?.state?.message}</div>
             </Form.Group>
           </Col>
+        </Row>
+        <Row>
           {/* For City */}
           <Col md={6}>
             <Form.Group className="mb-3" controlId="city">
               <Form.Label>City</Form.Label>
+
               <Form.Select
-                {...register("city", { required: "The city is required." })}
+                multiple
+                size={3}
+                {...register("city", {
+                  required: "The city is required.",
+                  validate: (value) =>
+                    value.length >= 2 || "Select at least two cities",
+                })}
               >
-                <option value="">Select city</option>
+                <option value="">Select 2 cities</option>
                 <option value="Rohtak">Rohtak</option>
                 <option value="Jaipur">Jaipur</option>
                 <option value="Jalandher">Jalandher</option>
               </Form.Select>
+
               <div className="text-danger">{errors?.city?.message}</div>
             </Form.Group>
           </Col>
+          {/* For Address */}
+          <Col md={6}>
+            <Form.Group className="mb-3" controlId="address">
+              <Form.Label>Address</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={4}
+                {...register("address", {
+                  required: "The address is required.",
+                })}
+              />
+              <div className="text-danger">{errors?.address?.message}</div>
+            </Form.Group>
+          </Col>
         </Row>
-        
+
+        <Row>
+          {/* For Zip/Pin */}
+          <Col md={6}>
+            <Form.Group className="mb-3" controlId="zip">
+              <Form.Label>Zip/Pin No.</Form.Label>
+              <Form.Control
+                type="text"
+                {...register("zip", {
+                  required: "Zip/Pin is required",
+                  pattern: {
+                    value: /^[0-9]{6}$/,
+                    message: "Zip/Pin must be 6 digits",
+                  },
+                })}
+              />
+              <div className="text-danger">{errors?.zip?.message}</div>
+            </Form.Group>
+          </Col>
+          {/* Joining date */}
+          <Col md={6}>
+            <Form.Group className="mb-3" controlId="joiningDate">
+              <Form.Label>Joining Date</Form.Label>
+              <Form.Control
+                type="date"
+                {...register("joiningDate", {
+                  required: "Joining date is required.",
+                  validate: (value) => {
+                    const today = new Date();
+                    const selectedDate = new Date(value);
+                    return (
+                      selectedDate < today ||
+                      "Joining date must be less than today's date"
+                    );
+                  },
+                })}
+              />
+              <div className="text-danger">{errors?.joiningDate?.message}</div>
+            </Form.Group>
+          </Col>
+        </Row>
+
+        <Row>
+          {/* For Gender */}
+          <Col md={6}>
+            <Form.Group className="mb-3" controlId="gender">
+              <Form.Label>Gender</Form.Label>
+              <br />
+              {["Male", "Female", "Transgender"].map((gender, index) => {
+                return (
+                  <Form.Check
+                    key={index}
+                    inline
+                    label={gender}
+                    value={gender}
+                    id={gender}
+                    type="radio"
+                    {...register("gender", {
+                      required: "Please select your gender",
+                    })}
+                  />
+                );
+              })}
+              <div className="text-danger">{errors?.gender?.message}</div>
+            </Form.Group>
+          </Col>
+          {/* For Hoobies */}
+          <Col md={6}>
+            <Form.Group className="mb-3" controlId="hobby">
+              <Form.Label>Hobbies</Form.Label>
+              <br />
+              {["Drawing", "Singing", "Dancing"].map((hobby, index) => {
+                return (
+                  <Form.Check
+                    key={index}
+                    inline
+                    value={hobby}
+                    label={hobby}
+                    id={hobby}
+                    type="checkbox"
+                    {...register("hobby", {
+                      validate: (value) => {
+                        return (
+                          value.length >= 2 ||
+                          "Please select at least two hobby"
+                        );
+                      },
+                      required: "Please select at least two hobby",
+                    })}
+                  />
+                );
+              })}
+              <div className="text-danger">{errors?.hobby?.message}</div>
+            </Form.Group>
+          </Col>
+        </Row>
+
+        <Row>
+          {/* For Profile Pic */}
+          <Col md={6}>
+            <Form.Group className="mb-3" controlId="profilePicture">
+              <Form.Label>Profile Picture</Form.Label>
+              <Form.Control
+                type="file"
+                {...register("profilePicture", {
+                  required: "Profile picture is required.",
+                  validate: {
+                    acceptedFormats: (value) => {
+                      if (!value || value.length === 0) return true; // Skip validation if no file is selected
+                      const file = value[0]; // Assuming single file upload
+                      const acceptedFormatList = [
+                        "image/jpeg",
+                        "image/png",
+                        "image/gif",
+                      ];
+                      return (
+                        acceptedFormatList.includes(file.type) ||
+                        "Only JPEG, PNG, and GIF images are allowed."
+                      );
+                    },
+                    fileSize: (value) => {
+                      if (!value || value.length === 0) return true;
+                      const file = value[0];
+                      const maxSize = 6 * 1024 * 1024; // 6MB in bytes
+                      return (
+                        file.size <= maxSize ||
+                        "File size must be less than 5MB."
+                      );
+                    },
+                  },
+                })}
+              />
+              <div className="text-danger">
+                {errors?.profilePicture?.message}
+              </div>
+            </Form.Group>
+          </Col>
+          {/* For Resume */}
+          <Col md={6}>
+            <Form.Group className="mb-3" controlId="resume">
+              <Form.Label>Resume</Form.Label>
+              <Form.Control
+                type="file"
+                {...register("resume", {
+                  required: "Resume is required.",
+                  validate: {
+                    acceptedFormats: (value) => {
+                      if (!value || value.length === 0) return true; // Skip validation if no file is selected
+                      const file = value[0]; // Assuming single file upload
+                      const acceptedFormatList = [
+                        "application/pdf",
+                        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                      ];
+                      return (
+                        acceptedFormatList.includes(file.type) ||
+                        "Only PDF, Word file resume are allowed."
+                      );
+                    },
+                    fileSize: (value) => {
+                      if (!value || value.length === 0) return true;
+                      const file = value[0];
+                      const maxSize = 8 * 1024 * 1024; // 8MB in bytes
+                      return (
+                        file.size <= maxSize ||
+                        "File size must be less than 5MB."
+                      );
+                    },
+                  },
+                })}
+              />
+              <div className="text-danger">{errors?.resume?.message}</div>
+            </Form.Group>
+          </Col>
+        </Row>
+
+        {/* For Checkbox */}
+        <Form.Group className="mb-3">
+          <Form.Check
+            type="checkbox"
+            
+            label="Accept Terms"
+            {...register("termsandconditions", {
+              required: "You must accept terms and conditions",
+            })}
+          />
+          <div className="text-danger">
+            {errors?.termsandconditions?.message}
+          </div>
+        </Form.Group>
 
         <Button type="submit">Submit form</Button>
+        <ToastContainer />
       </Form>
     </div>
   );
