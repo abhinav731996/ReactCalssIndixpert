@@ -1,20 +1,73 @@
-import React from 'react'
+import { schema } from "@hookform/resolvers/ajv/src/__tests__/__fixtures__/data.js";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Button, Col, Form, Row } from "react-bootstrap";
+import { useForm } from "react-hook-form";
+import { ToastContainer, toast } from "react-toastify";
+import * as yup from "yup";
 
 const RHFValidationYup = () => {
-  const RHFValidation = () => {
-    const {
-      formState: { errors },
-      register,
-      handleSubmit,
-      reset,
-    } = useForm();
-  }
+  const schema = yup.object().shape({
+    firstname: yup.string().required("First name is required"),
+    lastname: yup.string().required("Last name is required"),
+    age: yup.string(), //Pending
+    password: yup
+      .string()
+      .required("Password is required")
+      .min(4, "Password must be greater than 4")
+      .max(10, "You can use maximum 10 character for password")
+      .matches(
+        /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>?]/,
+        "Password must contain at least one special character",
+      )
+      .matches(/\d/, "Password must contain at least one digit")
+      .test("inBetweenSpace", "Password cannot contain spaces", (value) => {
+        if (value.includes(" ")) return false;
+        else return true;
+      }),
+    phone: yup
+      .string()
+      .matches(/^\+?[1-9]\d{9,10}$/, "Enter a valid phone number")
+      .required("Phone number is required."),
+    email: yup
+      .string()
+      .matches(
+        /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+        "Enter a valid email address",
+      )
+      .required("Email address is required."),
+    country: yup.string().required("Please select the country it's required"),
+    city: yup.string().required("Please select the city it's required"),
+    state: yup.string().required("Please select the state it's required"),
+    address: yup.string().required("Please enter your address, it's required"),
+    zip: yup
+      .string()
+      .matches(/^\+?[1-9]\d{5,5}$/, "Enter valid PIN value")
+      .required("Please enter valid Zip/Pin"),
+    joiningDate: yup.string(),
+    gender: yup.string().required("Gender is required"),
+    hobbies: yup
+      .array()
+      .required("Hobbies are required")
+      .typeError("Please select at least two hobbies")
+      .min(2, "Please select at least two hobbies"),
+
+    termsandconditions: yup.bool().oneOf([true], "Terms must be accepted"),
+  });
+
+  const {
+    formState: { errors },
+    register,
+    handleSubmit,
+    reset,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const handleOnSubmit = (data) => {
-      console.log(data);
-      toast.success("Form Submitted Successfully");
-      reset(); //ye form ko blank kr dega
-    };
+    console.log(data);
+    toast.success("Form Submitted Successfully");
+    reset(); //ye form ko blank kr dega
+  };
 
   return (
     <div>
@@ -26,12 +79,7 @@ const RHFValidationYup = () => {
           <Col md={6}>
             <Form.Group className="mb-3" controlId="firstname">
               <Form.Label>First name</Form.Label>
-              <Form.Control
-                type="text"
-                {...register("firstname", {
-                  required: "The Firstname is required.",
-                })}
-              />
+              <Form.Control type="text" {...register("firstname")} />
               <div className="text-danger">{errors?.firstname?.message}</div>
             </Form.Group>
           </Col>
@@ -39,12 +87,7 @@ const RHFValidationYup = () => {
           <Col md={6}>
             <Form.Group className="mb-3" controlId="lastname">
               <Form.Label>Last name</Form.Label>
-              <Form.Control
-                type="text"
-                {...register("lastname", {
-                  required: "The lastname is required.",
-                })}
-              />
+              <Form.Control type="text" {...register("lastname")} />
               <div className="text-danger">{errors?.lastname?.message}</div>
             </Form.Group>
           </Col>
@@ -54,14 +97,7 @@ const RHFValidationYup = () => {
           <Col md={6}>
             <Form.Group className="mb-3" controlId="age">
               <Form.Label>Age</Form.Label>
-              <Form.Control
-                type="number"
-                {...register("age", {
-                  required: "The Age is required.",
-                  min: { value: 18, message: "Age must be greater than 18" },
-                  max: { value: 40, message: "Age must be less than 50" },
-                })}
-              />
+              <Form.Control type="number" {...register("age")} />
               <div className="text-danger">{errors?.age?.message}</div>
             </Form.Group>
           </Col>
@@ -69,32 +105,7 @@ const RHFValidationYup = () => {
           <Col md={6}>
             <Form.Group className="mb-3" controlId="password">
               <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                {...register("password", {
-                  required: "The password is required.",
-                  minLength: {
-                    value: 6,
-                    message: "Password must be greater than 4",
-                  },
-                  maxLength: {
-                    value: 10,
-                    message: "You can use maximum 10 character for password",
-                  },
-                  validate: (value) => {
-                    if (!value) return true;
-                    if (value.includes(" "))
-                      return "Password cannot contain spaces";
-                    const hasSpecialChar =
-                      /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>?]/.test(value);
-                    const hasNumber = /\d/.test(value);
-                    if (!hasSpecialChar || !hasNumber) {
-                      return "Password must contain at least one special character and one number.";
-                    }
-                    return true;
-                  },
-                })}
-              />
+              <Form.Control type="password" {...register("password")} />
               <div className="text-danger">{errors?.password?.message}</div>
             </Form.Group>
           </Col>
@@ -105,16 +116,7 @@ const RHFValidationYup = () => {
           <Col md={6}>
             <Form.Group className="mb-3" controlId="phone">
               <Form.Label>Phone No.</Form.Label>
-              <Form.Control
-                type="text"
-                {...register("phone", {
-                  required: "Phone number is required",
-                  pattern: {
-                    value: /^[0-9]{10}$/,
-                    message: "Phone number must be 10 digits",
-                  },
-                })}
-              />
+              <Form.Control type="text" {...register("phone")} />
               <div className="text-danger">{errors?.phone?.message}</div>
             </Form.Group>
           </Col>
@@ -122,16 +124,7 @@ const RHFValidationYup = () => {
           <Col md={6}>
             <Form.Group className="mb-3" controlId="email">
               <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="text"
-                {...register("email", {
-                  required: "The email is required.",
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: "Please enter a valid email address",
-                  },
-                })}
-              />
+              <Form.Control type="text" {...register("email")} />
               <div className="text-danger">{errors?.email?.message}</div>
             </Form.Group>
           </Col>
@@ -142,11 +135,7 @@ const RHFValidationYup = () => {
           <Col md={6}>
             <Form.Group className="mb-3" controlId="country">
               <Form.Label>Country</Form.Label>
-              <Form.Select
-                {...register("country", {
-                  required: "The country is required.",
-                })}
-              >
+              <Form.Select {...register("country")}>
                 <option value="">Select Country</option>
                 <option value="India">India</option>
                 <option value="USA">USA</option>
@@ -159,9 +148,7 @@ const RHFValidationYup = () => {
           <Col md={6}>
             <Form.Group className="mb-3" controlId="state">
               <Form.Label>State</Form.Label>
-              <Form.Select
-                {...register("state", { required: "The state is required." })}
-              >
+              <Form.Select {...register("state")}>
                 <option value="">Select State</option>
                 <option value="Haryana">Haryana</option>
                 <option value="Rajisthan">Rajisthan</option>
@@ -177,15 +164,7 @@ const RHFValidationYup = () => {
             <Form.Group className="mb-3" controlId="city">
               <Form.Label>City</Form.Label>
 
-              <Form.Select
-                multiple
-                size={3}
-                {...register("city", {
-                  required: "The city is required.",
-                  validate: (value) =>
-                    value.length >= 2 || "Select at least two cities",
-                })}
-              >
+              <Form.Select multiple size={3} {...register("city")}>
                 <option value="">Select 2 cities</option>
                 <option value="Rohtak">Rohtak</option>
                 <option value="Jaipur">Jaipur</option>
@@ -199,13 +178,7 @@ const RHFValidationYup = () => {
           <Col md={6}>
             <Form.Group className="mb-3" controlId="address">
               <Form.Label>Address</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={4}
-                {...register("address", {
-                  required: "The address is required.",
-                })}
-              />
+              <Form.Control as="textarea" rows={4} {...register("address")} />
               <div className="text-danger">{errors?.address?.message}</div>
             </Form.Group>
           </Col>
@@ -216,16 +189,7 @@ const RHFValidationYup = () => {
           <Col md={6}>
             <Form.Group className="mb-3" controlId="zip">
               <Form.Label>Zip/Pin No.</Form.Label>
-              <Form.Control
-                type="text"
-                {...register("zip", {
-                  required: "Zip/Pin is required",
-                  pattern: {
-                    value: /^[0-9]{6}$/,
-                    message: "Zip/Pin must be 6 digits",
-                  },
-                })}
-              />
+              <Form.Control type="text" {...register("zip")} />
               <div className="text-danger">{errors?.zip?.message}</div>
             </Form.Group>
           </Col>
@@ -233,20 +197,7 @@ const RHFValidationYup = () => {
           <Col md={6}>
             <Form.Group className="mb-3" controlId="joiningDate">
               <Form.Label>Joining Date</Form.Label>
-              <Form.Control
-                type="date"
-                {...register("joiningDate", {
-                  required: "Joining date is required.",
-                  validate: (value) => {
-                    const today = new Date();
-                    const selectedDate = new Date(value);
-                    return (
-                      selectedDate < today ||
-                      "Joining date must be less than today's date"
-                    );
-                  },
-                })}
-              />
+              <Form.Control type="date" {...register("joiningDate")} />
               <div className="text-danger">{errors?.joiningDate?.message}</div>
             </Form.Group>
           </Col>
@@ -267,9 +218,7 @@ const RHFValidationYup = () => {
                     value={gender}
                     id={gender}
                     type="radio"
-                    {...register("gender", {
-                      required: "Please select your gender",
-                    })}
+                    {...register("gender")}
                   />
                 );
               })}
@@ -290,15 +239,7 @@ const RHFValidationYup = () => {
                     label={hobby}
                     id={hobby}
                     type="checkbox"
-                    {...register("hobby", {
-                      validate: (value) => {
-                        return (
-                          value.length >= 2 ||
-                          "Please select at least two hobby"
-                        );
-                      },
-                      required: "Please select at least two hobby",
-                    })}
+                    {...register("hobby")}
                   />
                 );
               })}
@@ -312,36 +253,7 @@ const RHFValidationYup = () => {
           <Col md={6}>
             <Form.Group className="mb-3" controlId="profilePicture">
               <Form.Label>Profile Picture</Form.Label>
-              <Form.Control
-                type="file"
-                {...register("profilePicture", {
-                  required: "Profile picture is required.",
-                  validate: {
-                    acceptedFormats: (value) => {
-                      if (!value || value.length === 0) return true; // Skip validation if no file is selected
-                      const file = value[0]; // Assuming single file upload
-                      const acceptedFormatList = [
-                        "image/jpeg",
-                        "image/png",
-                        "image/gif",
-                      ];
-                      return (
-                        acceptedFormatList.includes(file.type) ||
-                        "Only JPEG, PNG, and GIF images are allowed."
-                      );
-                    },
-                    fileSize: (value) => {
-                      if (!value || value.length === 0) return true;
-                      const file = value[0];
-                      const maxSize = 6 * 1024 * 1024; // 6MB in bytes
-                      return (
-                        file.size <= maxSize ||
-                        "File size must be less than 5MB."
-                      );
-                    },
-                  },
-                })}
-              />
+              <Form.Control type="file" {...register("profilePicture")} />
               <div className="text-danger">
                 {errors?.profilePicture?.message}
               </div>
@@ -351,35 +263,7 @@ const RHFValidationYup = () => {
           <Col md={6}>
             <Form.Group className="mb-3" controlId="resume">
               <Form.Label>Resume</Form.Label>
-              <Form.Control
-                type="file"
-                {...register("resume", {
-                  required: "Resume is required.",
-                  validate: {
-                    acceptedFormats: (value) => {
-                      if (!value || value.length === 0) return true; // Skip validation if no file is selected
-                      const file = value[0]; // Assuming single file upload
-                      const acceptedFormatList = [
-                        "application/pdf",
-                        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                      ];
-                      return (
-                        acceptedFormatList.includes(file.type) ||
-                        "Only PDF, Word file resume are allowed."
-                      );
-                    },
-                    fileSize: (value) => {
-                      if (!value || value.length === 0) return true;
-                      const file = value[0];
-                      const maxSize = 8 * 1024 * 1024; // 8MB in bytes
-                      return (
-                        file.size <= maxSize ||
-                        "File size must be less than 5MB."
-                      );
-                    },
-                  },
-                })}
-              />
+              <Form.Control type="file" {...register("resume")} />
               <div className="text-danger">{errors?.resume?.message}</div>
             </Form.Group>
           </Col>
@@ -389,11 +273,8 @@ const RHFValidationYup = () => {
         <Form.Group className="mb-3">
           <Form.Check
             type="checkbox"
-            
             label="Accept Terms"
-            {...register("termsandconditions", {
-              required: "You must accept terms and conditions",
-            })}
+            {...register("termsandconditions")}
           />
           <div className="text-danger">
             {errors?.termsandconditions?.message}
@@ -404,7 +285,7 @@ const RHFValidationYup = () => {
         <ToastContainer />
       </Form>
     </div>
-  )
-}
+  );
+};
 
-export default RHFValidationYup
+export default RHFValidationYup;

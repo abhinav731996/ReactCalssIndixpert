@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
@@ -17,16 +18,31 @@ const RHFValidation = () => {
   // const handleOnSubmit = (data) => {
   //   console.log(data);
   // };
+  // const handleOnSubmit = (data) => {
+  //   console.log(data);
+  //   toast.success("Form Submitted Successfully");
+  //   reset(); //ye form ko blank kr dega
+  // };
+  const [loading, setLoading] = useState(false);
+
   const handleOnSubmit = (data) => {
-    console.log(data);
-    toast.success("Form Submitted Successfully");
-    reset(); //ye form ko blank kr dega
+    setLoading(true);
+
+    setTimeout(() => {
+      console.log(data);
+
+      toast.success("Form Submitted Successfully");
+
+      reset();
+
+      setLoading(false);
+    }, 2000);
   };
   return (
     <div>
       <h1>This is React Hook Form Validation Without Yup</h1>
       <hr />
-      <Form onSubmit={handleSubmit(handleOnSubmit)}>
+      <Form onSubmit={handleSubmit(handleOnSubmit)} disabled={loading}>
         <Row>
           {/* For FirstName */}
           <Col md={6}>
@@ -65,7 +81,7 @@ const RHFValidation = () => {
                 {...register("age", {
                   required: "The Age is required.",
                   min: { value: 18, message: "Age must be greater than 18" },
-                  max: { value: 40, message: "Age must be less than 50" },
+                  max: { value: 40, message: "Age must be less than 40" },
                 })}
               />
               <div className="text-danger">{errors?.age?.message}</div>
@@ -188,8 +204,12 @@ const RHFValidation = () => {
                 size={3}
                 {...register("city", {
                   required: "The city is required.",
-                  validate: (value) =>
-                    value.length >= 2 || "Select at least two cities",
+                  validate: (value) => {
+                    if (!value || value.length < 2) {
+                      return "Select at least two cities";
+                    }
+                    return true;
+                  },
                 })}
               >
                 <option value="">Select 2 cities</option>
@@ -342,7 +362,7 @@ const RHFValidation = () => {
                       const maxSize = 6 * 1024 * 1024; // 6MB in bytes
                       return (
                         file.size <= maxSize ||
-                        "File size must be less than 5MB."
+                        "File size must be less than 6MB."
                       );
                     },
                   },
@@ -367,6 +387,7 @@ const RHFValidation = () => {
                       const file = value[0]; // Assuming single file upload
                       const acceptedFormatList = [
                         "application/pdf",
+                        "application/msword",
                         "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                       ];
                       return (
@@ -395,7 +416,6 @@ const RHFValidation = () => {
         <Form.Group className="mb-3">
           <Form.Check
             type="checkbox"
-            
             label="Accept Terms"
             {...register("termsandconditions", {
               required: "You must accept terms and conditions",
@@ -406,7 +426,9 @@ const RHFValidation = () => {
           </div>
         </Form.Group>
 
-        <Button type="submit">Submit form</Button>
+        <Button type="submit" disabled={loading}>
+          {loading ? "Submitting..." : "Submit Form"}
+        </Button>
         <ToastContainer />
       </Form>
     </div>
