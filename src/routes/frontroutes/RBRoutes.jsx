@@ -30,6 +30,8 @@ import RHFValidation from "../../pages/react-bootstrap/RHFValidation";
 import RHFValidationYup from "../../pages/react-bootstrap/RHFValidationYup";
 import RHFForm from "../../pages/react-bootstrap/RHFForm";
 import RHFFormYup from "../../pages/react-bootstrap/RHFFormYup";
+import BlogListing from "../../pages/blog/BlogListing";
+import BlogDetails from "../../pages/blog/BlogDetails";
 
 export const routes = createBrowserRouter(
     [
@@ -69,6 +71,8 @@ export const routes = createBrowserRouter(
                 {path:"/rb-hook-form-validation-yup", element:<RHFValidationYup/>},
                 {path:"/rb-hook-form", element:<RHFForm/>},
                 {path:"/rb-hook-form-yup", element:<RHFFormYup/>},
+                {path:"/blog-listing", element:<BlogListing/>},
+                {path:"/blog-details", element:<BlogDetails/>},
 
             ]
         },

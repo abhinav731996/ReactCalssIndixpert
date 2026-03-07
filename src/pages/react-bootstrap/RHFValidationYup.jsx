@@ -1,5 +1,5 @@
-import { schema } from "@hookform/resolvers/ajv/src/__tests__/__fixtures__/data.js";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
@@ -8,12 +8,20 @@ import * as yup from "yup";
 const RHFValidationYup = () => {
   const schema = yup.object().shape({
     firstname: yup.string().required("First name is required"),
+
     lastname: yup.string().required("Last name is required"),
-    age: yup.string(), //Pending
+
+    age: yup
+      .number()
+      .required("Please select the age it's required")
+      .typeError("Please select the age it's required")
+      .min(18, "Age must be greater then 18")
+      .max(40, "Age must be less then 40"),
+
     password: yup
       .string()
       .required("Password is required")
-      .min(4, "Password must be greater than 4")
+      .min(6, "Password must be greater than 6")
       .max(10, "You can use maximum 10 character for password")
       .matches(
         /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>?]/,
@@ -24,10 +32,12 @@ const RHFValidationYup = () => {
         if (value.includes(" ")) return false;
         else return true;
       }),
+
     phone: yup
       .string()
       .matches(/^\+?[1-9]\d{9,10}$/, "Enter a valid phone number")
       .required("Phone number is required."),
+
     email: yup
       .string()
       .matches(
@@ -35,21 +45,71 @@ const RHFValidationYup = () => {
         "Enter a valid email address",
       )
       .required("Email address is required."),
+
     country: yup.string().required("Please select the country it's required"),
-    city: yup.string().required("Please select the city it's required"),
+
+    city: yup
+      .array()
+      .min(2, "Please select at least 2 cities")
+      .required("City is required"),
+
     state: yup.string().required("Please select the state it's required"),
+
     address: yup.string().required("Please enter your address, it's required"),
+
     zip: yup
       .string()
       .matches(/^\+?[1-9]\d{5,5}$/, "Enter valid PIN value")
       .required("Please enter valid Zip/Pin"),
-    joiningDate: yup.string(),
-    gender: yup.string().required("Gender is required"),
-    hobbies: yup
+
+    joiningDate: yup
+      .date()
+      .typeError("Please select the joining date")
+      .max(new Date(), "Future date is not allowed")
+      .required("Joining date is required"), //pending
+
+    gender: yup.string().required("Please select the gender it's required"),
+
+    hobby: yup
       .array()
       .required("Hobbies are required")
       .typeError("Please select at least two hobbies")
       .min(2, "Please select at least two hobbies"),
+
+    profilePicture: yup
+      .mixed()
+      .test(
+        "fileFormat",
+        "Only JPG, JPEG, GIF and PNG files are allowed",
+        (value) => {
+          if (!value || !value[0]) return false;
+          const file = value[0];
+          const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+          return allowedTypes.includes(file.type);
+        },
+      )
+      .test("fileSize", "File size must be less than 5MB", (value) => {
+        if (!value || !value[0]) return false;
+        const file = value[0];
+        return file.size <= 5 * 1024 * 1024; // 5MB limit
+      }), //pending
+
+    resume: yup
+      .mixed()
+      .test("fileFormat", "Only PDF and DOCX files are allowed", (value) => {
+        if (!value || !value[0]) return false;
+        const file = value[0];
+        const allowedTypes = [
+          "application/pdf",
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        ];
+        return allowedTypes.includes(file.type);
+      })
+      .test("fileSize", "File size must be less than 5MB", (value) => {
+        if (!value || !value[0]) return false;
+        const file = value[0];
+        return file.size <= 6 * 1024 * 1024; // 5MB limit
+      }), //pending
 
     termsandconditions: yup.bool().oneOf([true], "Terms must be accepted"),
   });
@@ -61,19 +121,33 @@ const RHFValidationYup = () => {
     reset,
   } = useForm({
     resolver: yupResolver(schema),
+    // defaultValues: {
+    //   firstname: "Abhinav",
+    //   lastname: "Sharma"
+    // }
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleOnSubmit = (data) => {
-    console.log(data);
-    toast.success("Form Submitted Successfully");
-    reset(); //ye form ko blank kr dega
+    setLoading(true);
+
+    setTimeout(() => {
+      console.log(data);
+
+      toast.success("Form Submitted Successfully");
+
+      reset();
+
+      setLoading(false);
+    }, 2000);
   };
 
   return (
     <div>
       <h1>This is react hook validation with yup </h1>
       <br />
-      <Form onSubmit={handleSubmit(handleOnSubmit)}>
+      <Form onSubmit={handleSubmit(handleOnSubmit)} disabled={loading}>
         <Row>
           {/* For FirstName */}
           <Col md={6}>
@@ -281,7 +355,9 @@ const RHFValidationYup = () => {
           </div>
         </Form.Group>
 
-        <Button type="submit">Submit form</Button>
+        <Button type="submit" disabled={loading}>
+          {loading ? "Submitting..." : "Submit Form"}
+        </Button>
         <ToastContainer />
       </Form>
     </div>

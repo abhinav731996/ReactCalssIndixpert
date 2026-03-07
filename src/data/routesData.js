@@ -35,4 +35,9 @@ export const formData =[
     {link: "/rb-hook-form", menuItem: "RHF Form"},
     {link: "/rb-hook-form-yup", menuItem: "RHF Form Yup"},
 ]
+export const blogRoutsData =[
+    {link: "/blog-listing", menuItem: "BlogListing"},
+    {link: "/blog-details", menuItem: "BlogDetails"},
+    
+]
 
