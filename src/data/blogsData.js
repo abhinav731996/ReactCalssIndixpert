@@ -2,6 +2,7 @@ export const blogData = [
   {
     id: 1,
     title: "His mother had always taught him",
+    slug: "his-mother-had-always-taught-him",
     image:
       "https://media.istockphoto.com/id/1497396873/photo/ready-for-starting-my-beach-holiday.jpg?s=612x612&w=0&k=20&c=Rfb7IbYAZR1hNTF6KUDYq8CVu9Yr4wRgK2VLZIZyORY=",
     body: "His mother had always taught him not to ever think of himself as better than others. He'd tried to live by this motto. He never looked down on those who were less fortunate or who had less money than him. But the stupidity of the group of people he was talking to made him change his mind.",
@@ -16,6 +17,7 @@ export const blogData = [
   {
     id: 2,
     title: "He was an expert but not in a discipline",
+    slug: "he-was-an-expert-but-not-in-a-discipline",
     image:
       "https://img.freepik.com/free-photo/beautiful-girl-standing-boat-looking-mountains-ratchaprapha-dam-khao-sok-national-park-surat-thani-province-thailand_335224-849.jpg?semt=ais_hybrid&w=740&q=80",
     body: "He was an expert but not in a discipline that anyone could fully appreciate. He knew how to hold the cone just right so that the soft server ice-cream fell into it at the precise angle to form a perfect cone each and every time. It had taken years to perfect and he could now do it without even putting any thought behind it.",
@@ -30,6 +32,7 @@ export const blogData = [
   {
     id: 3,
     title: "Dave watched as the forest burned up on the hill.",
+    slug: "dave-watched-as-the-forest-burned-up-on-the-hill",
     image:
       "https://img.freepik.com/free-photo/full-shot-travel-concept-with-landmarks_23-2149153258.jpg",
     body: "Dave watched as the forest burned up on the hill, only a few miles from her house. The car had been hastily packed and Marta was inside trying to round up the last of the pets. Dave went through his mental list of the most important papers and documents that they couldn't leave behind. He scolded himself for not having prepared these better in advance and hoped that he had remembered everything that was needed. He continued to wait for Marta to appear with the pets, but she still was nowhere to be seen.",
