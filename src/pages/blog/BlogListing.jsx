@@ -1,12 +1,21 @@
 import React from "react";
-import { Card, Col, Container, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { blogData } from "../../data/blogsData";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const BlogListing = () => {
+  const navigate = useNavigate();
+  const handleButtonClick = ()=> {
+    navigate("/blog-details/3/dave-watched-as-the-forest-burned-up-on-the-hill")
+  }
   return (
     <div>
       <h1>This is blog listing page</h1>
+      <hr />
+      <Button onClick={()=> navigate(1)} >Next Page</Button>{" "}
+      <Button onClick={handleButtonClick} >Navigate tpo blog 3</Button>
+      
+      <hr />
       <Container>
         <Row>
           {blogData.map((blog) => {

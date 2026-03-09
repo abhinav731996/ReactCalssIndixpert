@@ -16,6 +16,7 @@ import {
   interactiveRoutesData,
   nonInteractiveRoutesData,
 } from "../data/routesData";
+import ScrollToTop from "../components/ScrollToTop";
 
 const RBLayout = () => {
   // ✅ Load initial mode from localStorage
@@ -139,6 +140,7 @@ const RBLayout = () => {
           <Card>
             <Card.Body>
               <Outlet />
+              <ScrollToTop/>
             </Card.Body>
           </Card>
         </Col>
