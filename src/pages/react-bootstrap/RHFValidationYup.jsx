@@ -66,7 +66,7 @@ const RHFValidationYup = () => {
       .date()
       .typeError("Please select the joining date")
       .max(new Date(), "Future date is not allowed")
-      .required("Joining date is required"), //pending
+      .required("Joining date is required"), 
 
     gender: yup.string().required("Please select the gender it's required"),
 

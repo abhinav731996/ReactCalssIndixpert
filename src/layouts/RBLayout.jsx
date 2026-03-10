@@ -9,7 +9,7 @@ import {
   Row,
 } from "react-bootstrap";
 import { ArrowRight, Moon, Sun } from "react-bootstrap-icons";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 import {
   blogRoutsData,
   formData,
@@ -24,6 +24,12 @@ const RBLayout = () => {
     const savedTheme = localStorage.getItem("theme");
     return savedTheme === "dark";
   });
+
+   const location = useLocation();
+    const { pathname } = location;
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, [pathname]);
 
   // ✅ Apply theme + save to localStorage
   useEffect(() => {

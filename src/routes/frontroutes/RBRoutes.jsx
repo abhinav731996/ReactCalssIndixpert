@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import RBLayout from "../../layouts/RBLayout";
 import AuthLayout from "../../layouts/AuthLayout";
 import RBHome from "../../pages/react-bootstrap/RBHome";
@@ -32,14 +32,19 @@ import RHFForm from "../../pages/react-bootstrap/RHFForm";
 import RHFFormYup from "../../pages/react-bootstrap/RHFFormYup";
 import BlogListing from "../../pages/blog/BlogListing";
 import BlogDetails from "../../pages/blog/BlogDetails";
+import NotFound404 from "../../pages/NotFound404";
 
 export const routes = createBrowserRouter(
     [
+        {path:"*", element:<Navigate to="/404/"/>},
+        // {path:"/404", element:<NotFound404/>},
+
         {element: <AuthLayout/>,
             children:[
                 {path:"/", element:<SignIn/>},
             ]
         },
+
         {
             element:<RBLayout/>,
             children:[
@@ -74,6 +79,8 @@ export const routes = createBrowserRouter(
                 {path:"/blog-listing", element:<BlogListing/>},
                 {path:"/blog-details/:id/:slug", element:<BlogDetails/>},
                 // {path:"/blog-details/:slug", element:<BlogDetails/>},
+                {path:"/404", element:<NotFound404/>},
+
 
             ]
         },
