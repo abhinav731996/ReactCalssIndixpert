@@ -4,12 +4,15 @@ import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 
 const RHFValidation = () => {
+  const [loading, setLoading] = useState(false);
   const {
     formState: { errors },
     register,
     handleSubmit,
     reset,
-  } = useForm();
+  } = useForm({
+    disabled: loading,
+  });
   // {
   // defaultValues: {
   //   firstname:" ",
@@ -23,7 +26,7 @@ const RHFValidation = () => {
   //   toast.success("Form Submitted Successfully");
   //   reset(); //ye form ko blank kr dega
   // };
-  const [loading, setLoading] = useState(false);
+  
 
   const handleOnSubmit = (data) => {
     setLoading(true);

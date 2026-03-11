@@ -6,6 +6,9 @@ import { ToastContainer, toast } from "react-toastify";
 import * as yup from "yup";
 
 const RHFValidationYup = () => {
+
+  const [loading, setLoading] = useState(false);
+
   const schema = yup.object().shape({
     firstname: yup.string().required("First name is required"),
 
@@ -114,12 +117,14 @@ const RHFValidationYup = () => {
     termsandconditions: yup.bool().oneOf([true], "Terms must be accepted"),
   });
 
+
   const {
     formState: { errors },
     register,
     handleSubmit,
     reset,
   } = useForm({
+    disabled: loading,
     resolver: yupResolver(schema),
     // defaultValues: {
     //   firstname: "Abhinav",
@@ -127,7 +132,6 @@ const RHFValidationYup = () => {
     // }
   });
 
-  const [loading, setLoading] = useState(false);
 
   const handleOnSubmit = (data) => {
     setLoading(true);
