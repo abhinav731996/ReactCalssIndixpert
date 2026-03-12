@@ -77,7 +77,7 @@ export const routes = createBrowserRouter(
                 {path:"/rb-hook-form", element:<RHFForm/>},
                 {path:"/rb-hook-form-yup", element:<RHFFormYup/>},
                 {path:"/blog-listing", element:<BlogListing/>},
-                {path:"/blog-details/:id/:slug", element:<BlogDetails/>},
+                {path:"/blog-details/:id", element:<BlogDetails/>},
                 // {path:"/blog-details/:slug", element:<BlogDetails/>},
                 {path:"/404", element:<NotFound404/>},
 

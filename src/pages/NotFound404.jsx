@@ -11,7 +11,7 @@ const NotFound404 = () => {
                                 <p className="mt-4 mb-5">
                                           The page you're looking for doesn't exist or has been moved.
                                  </p>
-                                <NavLink to="/" className="btn btn-light fw-semibold rounded-pill px-4 py-2 custom-btn">
+                                <NavLink to="/rb-home" className="btn btn-light fw-semibold rounded-pill px-4 py-2 custom-btn">
                                          Go Home
                                 </NavLink>
                       </div>

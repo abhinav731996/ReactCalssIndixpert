@@ -9,13 +9,21 @@ const BlogDetails = () => {
   const location = useLocation();
   const { pathname } = location;
 
-  
+  // const blogInfo = blogData.filter((blog) => blog.id == param.id)[0];
+  const blogInfo = blogData.find((blog) => blog.id == param.id);
 
-  const blogInfo = blogData.filter((blog) => blog.id == param.id)[0];
+  // to find current index
+  const currentIndex = blogData.findIndex((blog) => blog.id == param.id);
+
+  // to find nexxt blog
+  const nextBlog = blogData[currentIndex + 1];
+
+  // go to previous page
+  const prevBlog = blogData[currentIndex - 1];
 
   return (
     <div>
-      <h1>Thsi is blog details page</h1>
+      <h1>This is blog details page</h1>
       <hr />
       {/* <pre>{JSON.stringify(param, null, 2)}</pre>
       Id = {param.id}
@@ -33,7 +41,25 @@ const BlogDetails = () => {
       <Button onClick={() => navigate("/blog-listing")}>
         Back to blog
       </Button>{" "}
-      <Button onClick={() => navigate(-1)}>Back to previous page</Button>
+      {/* <Button onClick={() => navigate(-1)}>Back to previous page</Button>{" "} */}
+      <Button
+        onClick={() => {
+          if (prevBlog) {
+            navigate(`/blog-details/${prevBlog.id}`);
+          }
+        }}
+      >
+        Previous Blog
+      </Button>{" "}
+      <Button
+        onClick={() => {
+          if (nextBlog) {
+            navigate(`/blog-details/${nextBlog.id}`);
+          }
+        }}
+      >
+        Next Blog
+      </Button>
       <hr />
       {/* Blog Infromation  */}
       Path {pathname}
@@ -41,9 +67,8 @@ const BlogDetails = () => {
       <Image src={blogInfo?.image} />
       <p>{blogInfo?.body}</p>
       {/* <pre>{JSON.stringify(blogInfo, null, 2)}</pre> */}
-          <NavLink to="/blog-listing">
-          Back
-    </NavLink>
+      {/* <NavLink to="/blog-listing"> */}
+      <NavLink to="/blog-details">Back</NavLink>
     </div>
   );
 };
