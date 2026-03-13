@@ -33,6 +33,7 @@ import RHFFormYup from "../../pages/react-bootstrap/RHFFormYup";
 import BlogListing from "../../pages/blog/BlogListing";
 import BlogDetails from "../../pages/blog/BlogDetails";
 import NotFound404 from "../../pages/NotFound404";
+import FormLayout from "../../layouts/FormLayout";
 
 export const routes = createBrowserRouter(
     [
@@ -68,14 +69,30 @@ export const routes = createBrowserRouter(
                 {path:"/rb-navbar-off-canvas", element:<RBNavbarOffcanvas/>},
                 {path:"/rb-navtabs", element:<RBNavTabs/>},
                 {path:"/rb-overlays", element:<RBOverlays/>},
-                {path:"/rb-forms", element:<RBForms/>},
-                {path:"/rb-forms-practice", element:<RBFormsPractice/>},
-                {path:"/rb-fomic-yup-form", element:<RBFomicYupForm/>},
-                {path:"/rb-basic-form-validation", element:<BasicFormValidation/>},
-                {path:"/rb-hook-form-validation", element:<RHFValidation/>},
-                {path:"/rb-hook-form-validation-yup", element:<RHFValidationYup/>},
-                {path:"/rb-hook-form", element:<RHFForm/>},
-                {path:"/rb-hook-form-yup", element:<RHFFormYup/>},
+                
+                {
+                    path:"/", 
+                    element:<FormLayout/>,
+                    children:[
+                        {index:true, element: <RBHome/>},
+                        {path:"rb-forms", element:<RBForms/>},
+                        {path:"rb-forms-practice", element:<RBFormsPractice/>},
+                        {path:"rb-fomic-yup-form", element:<RBFomicYupForm/>},
+                        {path:"rb-basic-form-validation", element:<BasicFormValidation/>},
+                        {path:"rb-hook-form-validation", element:<RHFValidation/>},
+                        {path:"rb-hook-form-validation-yup", element:<RHFValidationYup/>},
+                        {path:"rb-hook-form", element:<RHFForm/>},
+                        {path:"rb-hook-form-yup", element:<RHFFormYup/>},
+                    ]
+                },
+                // {path:"/rb-forms", element:<RBForms/>},
+                // {path:"/rb-forms-practice", element:<RBFormsPractice/>},
+                // {path:"/rb-fomic-yup-form", element:<RBFomicYupForm/>},
+                // {path:"/rb-basic-form-validation", element:<BasicFormValidation/>},
+                // {path:"/rb-hook-form-validation", element:<RHFValidation/>},
+                // {path:"/rb-hook-form-validation-yup", element:<RHFValidationYup/>},
+                // {path:"/rb-hook-form", element:<RHFForm/>},
+                // {path:"/rb-hook-form-yup", element:<RHFFormYup/>},
                 {path:"/blog-listing", element:<BlogListing/>},
                 {path:"/blog-details/:id", element:<BlogDetails/>},
                 // {path:"/blog-details/:slug", element:<BlogDetails/>},
