@@ -70,6 +70,7 @@ export const routes = createBrowserRouter(
                 {path:"/rb-navtabs", element:<RBNavTabs/>},
                 {path:"/rb-overlays", element:<RBOverlays/>},
                 
+                // For nested routes
                 {
                     path:"/", 
                     element:<FormLayout/>,
@@ -93,6 +94,10 @@ export const routes = createBrowserRouter(
                 // {path:"/rb-hook-form-validation-yup", element:<RHFValidationYup/>},
                 // {path:"/rb-hook-form", element:<RHFForm/>},
                 // {path:"/rb-hook-form-yup", element:<RHFFormYup/>},
+
+
+                // For protected routes
+                
                 {path:"/blog-listing", element:<BlogListing/>},
                 {path:"/blog-details/:id", element:<BlogDetails/>},
                 // {path:"/blog-details/:slug", element:<BlogDetails/>},
