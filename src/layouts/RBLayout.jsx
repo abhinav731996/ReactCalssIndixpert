@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   Accordion,
   Badge,
+  Button,
   Card,
   Col,
   Container,
@@ -9,7 +10,7 @@ import {
   Row,
 } from "react-bootstrap";
 import { ArrowRight, Moon, Sun } from "react-bootstrap-icons";
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
   blogRoutsData,
   formData,
@@ -41,11 +42,20 @@ const RBLayout = () => {
     localStorage.setItem("theme", theme);
   }, [darkMode]);
 
+  const navigate = useNavigate();
+
+  const handleLogout = ()=>{
+    localStorage.setItem('login', false)
+    navigate("/auth/signin")
+  };
+
   return (
     <Container fluid>
       <Row>
         <Col className="d-flex justify-content-between">
           <h2>React BootStrap Component</h2>
+          <div>
+          <Button onClick={handleLogout} className='me-2'>Logout</Button>
           <Badge
             onClick={() => setDarkMode(!darkMode)}
             className="me-2 rounded-5 p-3"
@@ -56,6 +66,7 @@ const RBLayout = () => {
           >
             {darkMode ? <Sun size={20} /> : <Moon size={20} />}
           </Badge>
+          </div>
         </Col>
       </Row>
       <Row>

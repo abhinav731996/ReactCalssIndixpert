@@ -1,5 +1,5 @@
 export const nonInteractiveRoutesData =[
-    // {link: "/", menuItem: "SignIn"},
+    {link: "/", menuItem: "SignIn"},
     {link: "/rb-home", menuItem: "Home"},
     {link: "/rb-badges", menuItem: "Badges"},
     {link: "/rb-breadcrumb", menuItem: "Breadcrumb"},

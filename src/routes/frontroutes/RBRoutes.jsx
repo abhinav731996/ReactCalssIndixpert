@@ -34,78 +34,84 @@ import BlogListing from "../../pages/blog/BlogListing";
 import BlogDetails from "../../pages/blog/BlogDetails";
 import NotFound404 from "../../pages/NotFound404";
 import FormLayout from "../../layouts/FormLayout";
+import ProtectedRoute from "../../utils/ProtectedRoute";
 
-export const routes = createBrowserRouter(
-    [
-        {path:"*", element:<Navigate to="/404/"/>},
-        // {path:"/404", element:<NotFound404/>},
+export const routes = createBrowserRouter([
+  { element: <AuthLayout />, children: [{ path: "/auth/signin", element: <SignIn /> }] },
 
-        {element: <AuthLayout/>,
-            children:[
-                {path:"/", element:<SignIn/>},
-            ]
-        },
+  {
+    element: <RBLayout />,
+    children: [
+      { path: "/rb-home", element: <RBHome /> },
+      { path: "/rb-badges", element: <RBBadges /> },
+      { path: "/rb-breadcrumb", element: <RBBreadcrumb /> },
+      { path: "/rb-buttons", element: <RBButtons /> },
+      { path: "/rb-button-group", element: <RBButtonGroup /> },
+      { path: "/rb-cards", element: <RBCards /> },
+      { path: "/rb-images", element: <RBImages /> },
+      { path: "/rb-listgroup", element: <RBListGroup /> },
+      { path: "/rb-figure", element: <RBFigure /> },
+      { path: "/rb-pagination", element: <RBPagination /> },
+      { path: "/rb-progressbar", element: <RBPrgressBars /> },
+      { path: "/rb-spinners", element: <RBSpinners /> },
+      { path: "/rb-table", element: <RBTables /> },
+      { path: "/rb-accordion", element: <RBAccordion /> },
+      { path: "/rb-carousel", element: <RBCarousel /> },
+      { path: "/rb-dropdown", element: <RBDropdowns /> },
+      { path: "/rb-modal", element: <RBModal /> },
+      { path: "/rb-navbar-off-canvas", element: <RBNavbarOffcanvas /> },
+      { path: "/rb-navtabs", element: <RBNavTabs /> },
+      { path: "/rb-overlays", element: <RBOverlays /> },
 
-        {
-            element:<RBLayout/>,
-            children:[
-                {path:"/rb-home", element:<RBHome/>},
-                {path:"/rb-badges", element:<RBBadges/>},
-                {path:"/rb-breadcrumb", element:<RBBreadcrumb/>},
-                {path:"/rb-buttons", element:<RBButtons/>},
-                {path:"/rb-button-group", element:<RBButtonGroup/>},
-                {path:"/rb-cards", element:<RBCards/>},
-                {path:"/rb-images", element:<RBImages/>},
-                {path:"/rb-listgroup", element:<RBListGroup/>},
-                {path:"/rb-figure", element:<RBFigure/>},
-                {path:"/rb-pagination", element:<RBPagination/>},
-                {path:"/rb-progressbar", element:<RBPrgressBars/>},
-                {path:"/rb-spinners", element:<RBSpinners/>},
-                {path:"/rb-table", element:<RBTables/>},
-                {path:"/rb-accordion", element:<RBAccordion/>},
-                {path:"/rb-carousel", element:<RBCarousel/>},
-                {path:"/rb-dropdown", element:<RBDropdowns/>},
-                {path:"/rb-modal", element:<RBModal/>},
-                {path:"/rb-navbar-off-canvas", element:<RBNavbarOffcanvas/>},
-                {path:"/rb-navtabs", element:<RBNavTabs/>},
-                {path:"/rb-overlays", element:<RBOverlays/>},
-                
-                // For nested routes
-                {
-                    path:"/", 
-                    element:<FormLayout/>,
-                    children:[
-                        {index:true, element: <RBHome/>},
-                        {path:"rb-forms", element:<RBForms/>},
-                        {path:"rb-forms-practice", element:<RBFormsPractice/>},
-                        {path:"rb-fomic-yup-form", element:<RBFomicYupForm/>},
-                        {path:"rb-basic-form-validation", element:<BasicFormValidation/>},
-                        {path:"rb-hook-form-validation", element:<RHFValidation/>},
-                        {path:"rb-hook-form-validation-yup", element:<RHFValidationYup/>},
-                        {path:"rb-hook-form", element:<RHFForm/>},
-                        {path:"rb-hook-form-yup", element:<RHFFormYup/>},
-                    ]
-                },
-                // {path:"/rb-forms", element:<RBForms/>},
-                // {path:"/rb-forms-practice", element:<RBFormsPractice/>},
-                // {path:"/rb-fomic-yup-form", element:<RBFomicYupForm/>},
-                // {path:"/rb-basic-form-validation", element:<BasicFormValidation/>},
-                // {path:"/rb-hook-form-validation", element:<RHFValidation/>},
-                // {path:"/rb-hook-form-validation-yup", element:<RHFValidationYup/>},
-                // {path:"/rb-hook-form", element:<RHFForm/>},
-                // {path:"/rb-hook-form-yup", element:<RHFFormYup/>},
+      // For nested routes
+      {
+        path: "/",
+        element: <FormLayout />,
+        children: [
+          { index: true, element: <RBHome /> },
+          { path: "rb-forms", element: <RBForms /> },
+          { path: "rb-forms-practice", element: <RBFormsPractice /> },
+          { path: "rb-fomic-yup-form", element: <RBFomicYupForm /> },
+          {
+            path: "rb-basic-form-validation",
+            element: <BasicFormValidation />,
+          },
+          { path: "rb-hook-form-validation", element: <RHFValidation /> },
+          {
+            path: "rb-hook-form-validation-yup",
+            element: <RHFValidationYup />,
+          },
+          { path: "rb-hook-form", element: <RHFForm /> },
+          { path: "rb-hook-form-yup", element: <RHFFormYup /> },
+        ],
+      },
+      // {path:"/rb-forms", element:<RBForms/>},
+      // {path:"/rb-forms-practice", element:<RBFormsPractice/>},
+      // {path:"/rb-fomic-yup-form", element:<RBFomicYupForm/>},
+      // {path:"/rb-basic-form-validation", element:<BasicFormValidation/>},
+      // {path:"/rb-hook-form-validation", element:<RHFValidation/>},
+      // {path:"/rb-hook-form-validation-yup", element:<RHFValidationYup/>},
+      // {path:"/rb-hook-form", element:<RHFForm/>},
+      // {path:"/rb-hook-form-yup", element:<RHFFormYup/>},
 
-
-                // For protected routes
-                
-                {path:"/blog-listing", element:<BlogListing/>},
-                {path:"/blog-details/:id", element:<BlogDetails/>},
-                // {path:"/blog-details/:slug", element:<BlogDetails/>},
-                {path:"/404", element:<NotFound404/>},
+            { path: "/", element: <RBHome /> },
 
 
-            ]
-        },
-        
-    ]
-)
+      // For protected routes
+
+      {
+        element: <ProtectedRoute />,
+        children: [
+          { path: "/blog-listing", element: <BlogListing /> },
+          { path: "/blog-details/:id", element: <BlogDetails /> },
+        ],
+      },
+
+      // {path:"/blog-details/:slug", element:<BlogDetails/>},
+      { path: "/404", element: <NotFound404 /> },
+
+      { path: "*", element: <Navigate to="/404/" /> },
+      // {path:"/404", element:<NotFound404/>},
+    ],
+  },
+]);
