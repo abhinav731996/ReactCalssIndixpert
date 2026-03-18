@@ -34,10 +34,16 @@ export const formData =[
     {link: "/rb-hook-form-validation-yup", menuItem: "RHF Validation Yup"},
     {link: "/rb-hook-form", menuItem: "RHF Form"},
     {link: "/rb-hook-form-yup", menuItem: "RHF Form Yup"},
-]
+];
 export const blogRoutsData =[
     {link: "/blog-listing", menuItem: "BlogListing"},
-    {link: "/blog-details", menuItem: "BlogDetails"},
+    // {link: "/blog-details", menuItem: "BlogDetails"},
     
-]
+];
+
+export const hooksRoutData = [
+    {link: 'use-effect', menuItem: 'useEffect'},
+    {link: 'use-ref', menuItem: 'useRef'},
+    {link: 'react-memo', menuItem: 'reactMemo'},
+];
 

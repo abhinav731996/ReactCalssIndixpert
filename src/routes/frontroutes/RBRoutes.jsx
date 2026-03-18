@@ -35,6 +35,9 @@ import BlogDetails from "../../pages/blog/BlogDetails";
 import NotFound404 from "../../pages/NotFound404";
 import FormLayout from "../../layouts/FormLayout";
 import ProtectedRoute from "../../utils/ProtectedRoute";
+import ReactMemo from "../../pages/hooks/ReactMemo";
+import UseEffectHook from "../../pages/hooks/UseEffectHook";
+import UseRefHook from "../../pages/hooks/UseRefHook";
 
 export const routes = createBrowserRouter([
   { element: <AuthLayout />, children: [{ path: "/auth/signin", element: <SignIn /> }] },
@@ -103,12 +106,16 @@ export const routes = createBrowserRouter([
         element: <ProtectedRoute />,
         children: [
           { path: "/blog-listing", element: <BlogListing /> },
-          { path: "/blog-details/:id", element: <BlogDetails /> },
+          // { path: "/blog-details/:id", element: <BlogDetails /> },
+          // {path:"/blog-details/:slug", element:<BlogDetails/>},
         ],
       },
 
-      // {path:"/blog-details/:slug", element:<BlogDetails/>},
       { path: "/404", element: <NotFound404 /> },
+
+      { path: "/react-memo", element: <ReactMemo/> },
+      { path: "/use-effect", element: <UseEffectHook /> },
+      { path: "/use-ref", element: <UseRefHook /> },
 
       { path: "*", element: <Navigate to="/404/" /> },
       // {path:"/404", element:<NotFound404/>},
