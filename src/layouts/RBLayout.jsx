@@ -12,8 +12,9 @@ import {
 import { ArrowRight, Moon, Sun } from "react-bootstrap-icons";
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
-  blogRoutsData,
+  blogRoutesData,
   formData,
+  hooksRoutesData,
   interactiveRoutesData,
   nonInteractiveRoutesData,
 } from "../data/routesData";
@@ -94,7 +95,9 @@ const RBLayout = () => {
                   </Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey="1">
-                  <Accordion.Header>Interactive Component</Accordion.Header>
+                  <Accordion.Header>
+                    Interactive Component
+                  </Accordion.Header>
                   <Accordion.Body>
                     <ListGroup as="ul" variant="flush">
                       {/* calling though map function */}
@@ -112,7 +115,9 @@ const RBLayout = () => {
                 </Accordion.Item>
 
                 <Accordion.Item eventKey="2">
-                  <Accordion.Header>Form</Accordion.Header>
+                  <Accordion.Header>
+                    Form
+                  </Accordion.Header>
                   <Accordion.Body>
                     <ListGroup as="ul" variant="flush">
                       {/* calling though map function */}
@@ -130,12 +135,34 @@ const RBLayout = () => {
                 </Accordion.Item>
 
                 <Accordion.Item eventKey="3">
-                  <Accordion.Header>Blog</Accordion.Header>
+                  <Accordion.Header>
+                    Blog
+                  </Accordion.Header>
                   <Accordion.Body>
                     <ListGroup as="ul" variant="flush">
                       {/* calling though map function */}
 
-                      {blogRoutsData.map((item, index) => {
+                      {blogRoutesData.map((item, index) => {
+                        return (
+                          <ListGroup.Item as="li" key={index}>
+                            <ArrowRight />
+                            <NavLink to={item.link}> {item.menuItem}</NavLink>
+                          </ListGroup.Item>
+                        );
+                      })}
+                    </ListGroup>
+                  </Accordion.Body>
+                </Accordion.Item>
+
+                <Accordion.Item eventKey="4">
+                  <Accordion.Header>
+                    Hooks 
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    <ListGroup as="ul" variant="flush">
+                      {/* calling though map function */}
+
+                      {hooksRoutesData.map((item, index) => {
                         return (
                           <ListGroup.Item as="li" key={index}>
                             <ArrowRight />
