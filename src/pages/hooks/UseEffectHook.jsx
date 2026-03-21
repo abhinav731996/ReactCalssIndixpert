@@ -9,6 +9,8 @@ const UseEffectHook = () => {
 
   const [products, setProducts] = useState([]);
 
+  const [width, setWidth] = useState(window.innerWidth);
+
   useEffect(() => {
     const timerId = setTimeout(() => {
       setCount((prev) => prev + 1)
@@ -31,9 +33,19 @@ const UseEffectHook = () => {
     };
   }, [])
 
+  // *************** it will be use for subscription **************
+  const handleResizeWindow = ()=>{setWidth(window.innerWidth)}
+  useEffect(() => {
+    window.addEventListener("resize", handleResizeWindow)
+    return () => {
+      window.removeEventListener("resize", handleResizeWindow)
+    };
+  }, [])
+
   return (
     <div>
       Useeffect Hook 
+      Inner width of the window is {width}
       <br />
       The value of count is <span className='text-primary fw-bold'>{count}</span>
       <hr />
