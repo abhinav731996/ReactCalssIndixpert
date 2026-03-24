@@ -38,6 +38,10 @@ import ProtectedRoute from "../../utils/ProtectedRoute";
 import ReactMemo from "../../pages/hooks/ReactMemo";
 import UseEffectHook from "../../pages/hooks/UseEffectHook";
 import UseRefHook from "../../pages/hooks/UseRefHook";
+import UseCallback from "../../pages/hooks/UseCallback";
+import UseMemo from "../../pages/hooks/UseMemo";
+import ReactMemoAndUseCallback from "../../pages/hooks/ReactMemoAndUseCallback";
+import CustomHook from "../../pages/hooks/CustomHook";
 
 export const routes = createBrowserRouter([
   { element: <AuthLayout />, children: [{ path: "/auth/signin", element: <SignIn /> }] },
@@ -116,6 +120,10 @@ export const routes = createBrowserRouter([
       { path: "/react-memo", element: <ReactMemo/> },
       { path: "/use-effect", element: <UseEffectHook /> },
       { path: "/use-ref", element: <UseRefHook /> },
+      { path: "/use-callback", element: <UseCallback/>},
+      { path: "/use-memo", element: <UseMemo/>},
+      { path: "/react-memo-and-use-callback", element: <ReactMemoAndUseCallback/>},
+      { path: "/custom-hook", element: <CustomHook/>},
 
       { path: "*", element: <Navigate to="/404/" /> },
       // {path:"/404", element:<NotFound404/>},

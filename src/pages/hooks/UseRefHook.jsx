@@ -21,17 +21,27 @@ const PlayControl = forwardRef((props, ref) => {
   );
 });
 
+
 const UseRefHook = () => {
   const [inputValue, setInputValue] = useState('testing');
   const inputRef = useRef(null);
   const videoRef = useRef(null);
 
+  // // for video play/pause
+  
+  // const handleClick = () => {
+  //   if (inputRef.current) {
+  //     inputRef.current.focus();
+  //     setInputValue(inputRef.current.value);
+  //   }
+  // };
+  
+  // // For aleart value 
+
   const handleClick = () => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-      setInputValue(inputRef.current.value);
-    }
-  };
+    alert(inputRef.current.value)
+  }
+
 
   return (
     <div className="p-4">
@@ -54,6 +64,11 @@ const UseRefHook = () => {
         width="400"
       ></video>
       <PlayControl ref={videoRef}/>
+      <hr />
+
+      {/* alertSection */}
+      <input type="text" ref={inputRef}/>
+      <button onClick={handleClick}>Click me</button>
     </div>
   );
 };

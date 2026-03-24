@@ -45,5 +45,9 @@ export const hooksRoutesData = [
     {link: 'use-effect', menuItem: 'useEffect'},
     {link: 'use-ref', menuItem: 'useRef'},
     {link: 'react-memo', menuItem: 'reactMemo'},
+    {link: 'use-callback', menuItem: 'useCallback'},
+    {link: 'use-memo', menuItem: 'useMemo'},
+    {link: 'react-memo-and-use-callback', menuItem: 'reactMemo & useCallback'},
+    {link: 'custom-hook', menuItem: 'customHook'},
 ];
 

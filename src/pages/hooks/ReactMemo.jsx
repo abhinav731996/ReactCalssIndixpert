@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Button } from 'react-bootstrap';
 
+//child component
 const ShowCounterValue = React.memo(({count})=> {
   console.log("showcountervalue child component rendered" + Math.random());
   
@@ -9,6 +10,7 @@ const ShowCounterValue = React.memo(({count})=> {
   )
 })
 
+//Parent component
 const ReactMemo = () => {
   const [count, setCount] = useState(0);
   const [countOthers, setCountOthers] = useState(0)
