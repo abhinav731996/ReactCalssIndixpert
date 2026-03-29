@@ -42,12 +42,17 @@ export const blogRoutesData =[
 ];
 
 export const hooksRoutesData = [
-    {link: 'use-effect', menuItem: 'useEffect'},
-    {link: 'use-ref', menuItem: 'useRef'},
-    {link: 'react-memo', menuItem: 'reactMemo'},
-    {link: 'use-callback', menuItem: 'useCallback'},
-    {link: 'use-memo', menuItem: 'useMemo'},
-    {link: 'react-memo-and-use-callback', menuItem: 'reactMemo & useCallback'},
-    {link: 'custom-hook', menuItem: 'customHook'},
+    {link: '/use-effect', menuItem: 'useEffect'},
+    {link: '/use-ref', menuItem: 'useRef'},
+    {link: '/react-memo', menuItem: 'reactMemo'},
+    {link: '/use-callback', menuItem: 'useCallback'},
+    {link: '/use-memo', menuItem: 'useMemo'},
+    {link: '/react-memo-and-use-callback', menuItem: 'reactMemo & useCallback'},
+    {link: '/custom-hook', menuItem: 'customHook'},
+];
+
+export const APIRoutesData = [
+    {link: '/fetch-api', menuItem: 'fetchAPI'},
+    
 ];
 

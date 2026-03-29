@@ -12,6 +12,7 @@ import {
 import { ArrowRight, Moon, Sun } from "react-bootstrap-icons";
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
+  APIRoutesData,
   blogRoutesData,
   formData,
   hooksRoutesData,
@@ -163,6 +164,27 @@ const RBLayout = () => {
                       {/* calling though map function */}
 
                       {hooksRoutesData.map((item, index) => {
+                        return (
+                          <ListGroup.Item as="li" key={index}>
+                            <ArrowRight />
+                            <NavLink to={item.link}> {item.menuItem}</NavLink>
+                          </ListGroup.Item>
+                        );
+                      })}
+                    </ListGroup>
+                  </Accordion.Body>
+                </Accordion.Item>
+
+
+                <Accordion.Item eventKey="5">
+                  <Accordion.Header>
+                    API
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    <ListGroup as="ul" variant="flush">
+                      {/* calling though map function */}
+
+                      {APIRoutesData.map((item, index) => {
                         return (
                           <ListGroup.Item as="li" key={index}>
                             <ArrowRight />
