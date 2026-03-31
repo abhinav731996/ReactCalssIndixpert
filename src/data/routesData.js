@@ -53,6 +53,11 @@ export const hooksRoutesData = [
 
 export const APIRoutesData = [
     {link: '/fetch-api', menuItem: 'fetchAPI'},
+    {link: '/axios-api', menuItem: 'axiosAPI'},
     
 ];
 
+export const ContextAPIRoutesData = [
+    {link: '/user-list', menuItem: 'userList'},
+    
+];

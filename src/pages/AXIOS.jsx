@@ -1,19 +1,23 @@
+import axios from "axios";
+
 import React, { Fragment, useEffect, useState } from "react";
 import { Button, Card, Col, Container, Row, Spinner } from "react-bootstrap";
+import { api, fetchProducts } from "../api/Services";
 
-const FetchAPI = () => {
+const AXIOS = () => {
   const [products, setProducts] = useState([]); // FIX
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null); // better practice
 
   const getProducts = async () => {
     try {
-      const response = await fetch("https://dummyjson.com/products");
-      if (!response.ok) {
-        throw new Error("Server or Network response issues.");
-      }
-      const data = await response.json();
-      setProducts(data.products);
+      //   const response = await axios.get("https://dummyjson.com/products");
+
+      //    const response = await api.get("/products");
+      //   setProducts(response.data.products);
+
+      const response = await fetchProducts();
+      setProducts(response.products);
     } catch (error) {
       setError(error);
     } finally {
@@ -23,28 +27,28 @@ const FetchAPI = () => {
     }
   };
 
+  //   const getProducts = async () => {
+  //     const response = await axios.get("https://dummyjson.com/products")
+  //     setProducts(response.data.products)
+  //   }
   useEffect(() => {
     setLoading(true);
     getProducts();
     // setTimeout(() => {
-    //   setLoading(false);
+    //     setLoading(false)
     // }, 1000);
 
-    // fetch("https://dummyjson.com/products")
-    //   .then((response) => response.json())
-    //   .then((data) => setProducts(data.products))
-    //   .catch((error) => setError(error))
-    //   .finally(() => {
-    //     setTimeout(() => {
-    //       setLoading(false);
-    //     }, 1000);
-    //   });
-  }, []); // FIX: runs only once
+    // axios.get("https://dummyjson.com/products")
+    // .then(response => setProducts(response.data.products))
+    // .catch(error => setError(error))
+    // .finally(setTimeout(() => {
+    //     setLoading(false)
+    // }, 1000))
+  }, []);
 
   return (
     <div>
-      <h4 className="text-center mt-3">This is Fetch API</h4>
-
+      This is api call using axios
       <Container>
         <Row>
           {loading ? (
@@ -85,4 +89,4 @@ const FetchAPI = () => {
   );
 };
 
-export default FetchAPI;
+export default AXIOS;

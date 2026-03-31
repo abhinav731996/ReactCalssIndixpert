@@ -14,6 +14,7 @@ import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
   APIRoutesData,
   blogRoutesData,
+  ContextAPIRoutesData,
   formData,
   hooksRoutesData,
   interactiveRoutesData,
@@ -185,6 +186,26 @@ const RBLayout = () => {
                       {/* calling though map function */}
 
                       {APIRoutesData.map((item, index) => {
+                        return (
+                          <ListGroup.Item as="li" key={index}>
+                            <ArrowRight />
+                            <NavLink to={item.link}> {item.menuItem}</NavLink>
+                          </ListGroup.Item>
+                        );
+                      })}
+                    </ListGroup>
+                  </Accordion.Body>
+                </Accordion.Item>
+
+                <Accordion.Item eventKey="6">
+                  <Accordion.Header>
+                    ContextAPI
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    <ListGroup as="ul" variant="flush">
+                      {/* calling though map function */}
+
+                      {ContextAPIRoutesData.map((item, index) => {
                         return (
                           <ListGroup.Item as="li" key={index}>
                             <ArrowRight />

@@ -43,6 +43,8 @@ import UseMemo from "../../pages/hooks/UseMemo";
 import ReactMemoAndUseCallback from "../../pages/hooks/ReactMemoAndUseCallback";
 import CustomHook from "../../pages/hooks/CustomHook";
 import FetchAPI from "../../pages/FetchAPI";
+import AXIOS from "../../pages/AXIOS";
+import UserList from "../../pages/UserList";
 
 export const routes = createBrowserRouter([
   { element: <AuthLayout />, children: [{ path: "/auth/signin", element: <SignIn /> }] },
@@ -127,6 +129,8 @@ export const routes = createBrowserRouter([
       { path: "/custom-hook", element: <CustomHook/>},
       
       { path: "fetch-api", element: <FetchAPI/>},
+      { path: "axios-api", element: <AXIOS/>},
+      { path: "user-list", element: <UserList/>},
 
       { path: "*", element: <Navigate to="/404/" /> },
       // {path:"/404", element:<NotFound404/>},
