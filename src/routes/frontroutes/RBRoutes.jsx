@@ -45,6 +45,8 @@ import CustomHook from "../../pages/hooks/CustomHook";
 import FetchAPI from "../../pages/FetchAPI";
 import AXIOS from "../../pages/AXIOS";
 import UserList from "../../pages/UserList";
+import User from "../../pages/User";
+import Wishlist from "../../pages/Wishlist";
 
 export const routes = createBrowserRouter([
   { element: <AuthLayout />, children: [{ path: "/auth/signin", element: <SignIn /> }] },
@@ -131,6 +133,8 @@ export const routes = createBrowserRouter([
       { path: "fetch-api", element: <FetchAPI/>},
       { path: "axios-api", element: <AXIOS/>},
       { path: "user-list", element: <UserList/>},
+      { path: "user", element: <User/>},
+      { path: "wishlist", element: <Wishlist/>},
 
       { path: "*", element: <Navigate to="/404/" /> },
       // {path:"/404", element:<NotFound404/>},

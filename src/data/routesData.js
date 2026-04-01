@@ -59,5 +59,6 @@ export const APIRoutesData = [
 
 export const ContextAPIRoutesData = [
     {link: '/user-list', menuItem: 'userList'},
+    {link: '/user', menuItem: 'user'},
     
 ];

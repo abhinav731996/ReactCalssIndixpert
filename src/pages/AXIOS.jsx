@@ -1,10 +1,15 @@
 import axios from "axios";
 
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import { Button, Card, Col, Container, Row, Spinner } from "react-bootstrap";
 import { api, fetchProducts } from "../api/Services";
+import { WishlistContext } from "../context/Context";
 
 const AXIOS = () => {
+
+  // for add to cart
+  const {wishlistState, wishlistDispatch} = useContext(WishlistContext)
+
   const [products, setProducts] = useState([]); // FIX
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null); // better practice
@@ -46,11 +51,26 @@ const AXIOS = () => {
     // }, 1000))
   }, []);
 
+  // // add to wishlist component
+  const AddToWishlist = ({product})=>{
+    return(
+      <Button size="sm" variant="outline-success"
+                        onClick={()=> wishlistDispatch(
+                          {
+                            type:"ADD_TO_WISHLIST",
+                            payload: product,
+                          }
+                        )}>
+                          Add to Wishlist 
+                        </Button>
+    )
+  }
   return (
     <div>
       This is api call using axios
       <Container>
         <Row>
+          {/* <pre>{JSON.stringify(products, null, 2)}</pre> */}
           {loading ? (
             <Col className="text-center">
               {" "}
@@ -60,7 +80,7 @@ const AXIOS = () => {
             <Col className="text-danger text-center">Something went wrong!</Col>
           ) : (
             <Fragment>
-              {products.map((product) => {
+              {products?.map((product) => {
                 return (
                   <Col md={3} key={product.id} className="mb-3">
                     <Card>
@@ -69,13 +89,20 @@ const AXIOS = () => {
                         <Card.Title>{product.title}</Card.Title>
                       </Card.Body>
                       <Card.Footer className="d-flex justify-content-between bg-white">
-                        <Button size="sm" variant="outline-primary">
+                        <Button size="sm" variant="outline-primary"                        >
                           Add to Cart
                         </Button>
 
-                        <Button size="sm" variant="outline-success">
-                          Add to Cart
-                        </Button>
+                        <AddToWishlist product={product}/>
+                        {/* <Button size="sm" variant="outline-success"
+                        onClick={()=> wishlistDispatch(
+                          {
+                            type:"ADD_TO_WISHLIST",
+                            payload: product,
+                          }
+                        )}>
+                          Add to Wishlist 
+                        </Button> */}
                       </Card.Footer>
                     </Card>
                   </Col>

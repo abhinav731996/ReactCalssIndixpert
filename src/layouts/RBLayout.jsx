@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Accordion,
   Badge,
@@ -21,21 +21,28 @@ import {
   nonInteractiveRoutesData,
 } from "../data/routesData";
 import ScrollToTop from "../components/ScrollToTop";
+import { UserContext, WishlistContext } from "../context/Context";
 
 const RBLayout = () => {
-  // ✅ Load initial mode from localStorage
+
+  // Here is the code of context api states.....
+  const { username } = useContext(UserContext);
+  const { wishlistState } = useContext(WishlistContext);
+
+
+  //  Load initial mode from localStorage
   const [darkMode, setDarkMode] = useState(() => {
     const savedTheme = localStorage.getItem("theme");
     return savedTheme === "dark";
   });
 
-   const location = useLocation();
-    const { pathname } = location;
+  const location = useLocation();
+  const { pathname } = location;
   useEffect(() => {
     window.scroll(0, 0);
   }, [pathname]);
 
-  // ✅ Apply theme + save to localStorage
+  //  Apply theme + save to localStorage
   useEffect(() => {
     const htmlElement = document.documentElement;
 
@@ -47,9 +54,9 @@ const RBLayout = () => {
 
   const navigate = useNavigate();
 
-  const handleLogout = ()=>{
-    localStorage.setItem('login', false)
-    navigate("/auth/signin")
+  const handleLogout = () => {
+    localStorage.setItem("login", false);
+    navigate("/auth/signin");
   };
 
   return (
@@ -58,17 +65,22 @@ const RBLayout = () => {
         <Col className="d-flex justify-content-between">
           <h2>React BootStrap Component</h2>
           <div>
-          <Button onClick={handleLogout} className='me-2'>Logout</Button>
-          <Badge
-            onClick={() => setDarkMode(!darkMode)}
-            className="me-2 rounded-5 p-3"
-            bg={darkMode ? "light" : "dark"}
-            text={darkMode ? "dark" : "light"}
-            role="button"
-            style={{ cursor: "pointer" }}
-          >
-            {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-          </Badge>
+            Welcome : {username}{" "}
+            {/* <pre>{JSON.stringify(wishlistState.wishlistitem, null, 2)}</pre> */}
+            <NavLink to="/wishlist" variant="link">Wishlist <Badge>{wishlistState.wishlistItems.length}</Badge></NavLink>{" "}
+            <Button onClick={handleLogout} className="me-2">
+              Logout
+            </Button>
+            <Badge
+              onClick={() => setDarkMode(!darkMode)}
+              className="me-2 rounded-5 p-3"
+              bg={darkMode ? "light" : "dark"}
+              text={darkMode ? "dark" : "light"}
+              role="button"
+              style={{ cursor: "pointer" }}
+            >
+              {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+            </Badge>
           </div>
         </Col>
       </Row>
@@ -97,9 +109,7 @@ const RBLayout = () => {
                   </Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey="1">
-                  <Accordion.Header>
-                    Interactive Component
-                  </Accordion.Header>
+                  <Accordion.Header>Interactive Component</Accordion.Header>
                   <Accordion.Body>
                     <ListGroup as="ul" variant="flush">
                       {/* calling though map function */}
@@ -117,9 +127,7 @@ const RBLayout = () => {
                 </Accordion.Item>
 
                 <Accordion.Item eventKey="2">
-                  <Accordion.Header>
-                    Form
-                  </Accordion.Header>
+                  <Accordion.Header>Form</Accordion.Header>
                   <Accordion.Body>
                     <ListGroup as="ul" variant="flush">
                       {/* calling though map function */}
@@ -137,9 +145,7 @@ const RBLayout = () => {
                 </Accordion.Item>
 
                 <Accordion.Item eventKey="3">
-                  <Accordion.Header>
-                    Blog
-                  </Accordion.Header>
+                  <Accordion.Header>Blog</Accordion.Header>
                   <Accordion.Body>
                     <ListGroup as="ul" variant="flush">
                       {/* calling though map function */}
@@ -157,9 +163,7 @@ const RBLayout = () => {
                 </Accordion.Item>
 
                 <Accordion.Item eventKey="4">
-                  <Accordion.Header>
-                    Hooks 
-                  </Accordion.Header>
+                  <Accordion.Header>Hooks</Accordion.Header>
                   <Accordion.Body>
                     <ListGroup as="ul" variant="flush">
                       {/* calling though map function */}
@@ -176,11 +180,8 @@ const RBLayout = () => {
                   </Accordion.Body>
                 </Accordion.Item>
 
-
                 <Accordion.Item eventKey="5">
-                  <Accordion.Header>
-                    API
-                  </Accordion.Header>
+                  <Accordion.Header>API</Accordion.Header>
                   <Accordion.Body>
                     <ListGroup as="ul" variant="flush">
                       {/* calling though map function */}
@@ -198,9 +199,7 @@ const RBLayout = () => {
                 </Accordion.Item>
 
                 <Accordion.Item eventKey="6">
-                  <Accordion.Header>
-                    ContextAPI
-                  </Accordion.Header>
+                  <Accordion.Header>ContextAPI</Accordion.Header>
                   <Accordion.Body>
                     <ListGroup as="ul" variant="flush">
                       {/* calling though map function */}
@@ -216,8 +215,6 @@ const RBLayout = () => {
                     </ListGroup>
                   </Accordion.Body>
                 </Accordion.Item>
-
-
               </Accordion>
             </Card.Body>
           </Card>
@@ -227,7 +224,7 @@ const RBLayout = () => {
           <Card>
             <Card.Body>
               <Outlet />
-              <ScrollToTop/>
+              <ScrollToTop />
             </Card.Body>
           </Card>
         </Col>
