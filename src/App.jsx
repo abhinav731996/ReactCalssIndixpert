@@ -6,19 +6,15 @@ import "./Rb.css";
 import { RouterProvider } from "react-router-dom";
 // import { routes } from './routes/DataModeRoutes'
 import { routes } from "./routes/frontroutes/RBRoutes";
-import { UserContext } from "./context/Context";
-import UserProvider from "./context/providers/UserProvider";
-import WishlistProvider from "./context/providers/WishlistProvider";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 function App() {
   return (
     <>
-      <UserProvider>
-        <WishlistProvider>
+      <Provider store={store}>
         <RouterProvider router={routes} />
-
-        </WishlistProvider>
-      </UserProvider>
+      </Provider>
     </>
   );
 }

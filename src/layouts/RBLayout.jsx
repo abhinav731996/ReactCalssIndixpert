@@ -22,12 +22,17 @@ import {
 } from "../data/routesData";
 import ScrollToTop from "../components/ScrollToTop";
 import { UserContext, WishlistContext } from "../context/Context";
+import { useSelector } from "react-redux";
 
 const RBLayout = () => {
 
-  // Here is the code of context api states.....
-  const { username } = useContext(UserContext);
-  const { wishlistState } = useContext(WishlistContext);
+  // // Here is the code of context api states.....
+  // const { username } = useContext(UserContext);
+  // const { wishlistState } = useContext(WishlistContext);
+
+  // // Redux to read wishlist item
+    const wishlistState = useSelector((state)=> state.wishlist)
+    const username  = "";
 
 
   //  Load initial mode from localStorage
@@ -67,7 +72,7 @@ const RBLayout = () => {
           <div>
             Welcome : {username}{" "}
             {/* <pre>{JSON.stringify(wishlistState.wishlistitem, null, 2)}</pre> */}
-            <NavLink to="/wishlist" variant="link">Wishlist <Badge>{wishlistState.wishlistItems.length}</Badge></NavLink>{" "}
+            <NavLink to="/wishlist" variant="link">Wishlist <Badge>{wishlistState?.wishlistItems?.length}</Badge></NavLink>{" "}
             <Button onClick={handleLogout} className="me-2">
               Logout
             </Button>

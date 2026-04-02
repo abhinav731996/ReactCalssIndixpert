@@ -1,13 +1,23 @@
 import React, { useContext } from "react";
 import { Button, Image, Table } from "react-bootstrap";
 import { WishlistContext } from "../context/Context";
+import { useDispatch, useSelector } from "react-redux";
+import { removeFromWishlist } from "../store/slices/WishlistSlice";
 
 const Wishlist = () => {
-  const { wishlistState, wishlistDispatch } = useContext(WishlistContext);
+
+  const dispatch = useDispatch();
+  // // context API to read wishlist items 
+  // const { wishlistState, wishlistDispatch } = useContext(WishlistContext);
+
+  // Redux to read wishlist items
+   const wishlistState = useSelector((state)=> state.wishlist)
+  // const wishlistState = [];
   return (
     <div>
       <h1>Wishlist</h1>
       <hr />
+      {/* <pre>{JSON.stringify(fullState,null,2)}</pre> */}
       <Table responsive>
         <thead>
           <tr>
@@ -28,11 +38,13 @@ const Wishlist = () => {
                   <Button
                     variant="outline-danger"
                     size="sm"
-                    onClick={() =>
-                      wishlistDispatch({
-                        type: "REMOVE_FROM_WISHLIST",
-                        id: item.id,
-                      })
+                    onClick={
+                      // () =>
+                      // wishlistDispatch({
+                      //   type: "REMOVE_FROM_WISHLIST",
+                      //   id: item.id,
+                      // })
+                      ()=> dispatch(removeFromWishlist(item.id))
                     }
                   >
                     Delete
