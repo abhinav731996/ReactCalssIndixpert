@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
 import { addToWishlist } from "../store/slices/WishlistSlice";
 
-const AddToWishlist = ({ product }) => {
+export const AddToWishlist = ({ product }) => {
 
     // // using context to read wishlist 
 //   const { wishlistState, wishlistDispatch } = useContext(WishlistContext);

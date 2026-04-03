@@ -47,6 +47,7 @@ import AXIOS from "../../pages/AXIOS";
 import UserList from "../../pages/UserList";
 import User from "../../pages/User";
 import Wishlist from "../../pages/Wishlist";
+import ShoppingCart from "../../pages/ShoppingCart";
 
 export const routes = createBrowserRouter([
   { element: <AuthLayout />, children: [{ path: "/auth/signin", element: <SignIn /> }] },
@@ -134,7 +135,9 @@ export const routes = createBrowserRouter([
       { path: "axios-api", element: <AXIOS/>},
       { path: "user-list", element: <UserList/>},
       { path: "user", element: <User/>},
+
       { path: "wishlist", element: <Wishlist/>},
+      { path: "shopping-cart", element: <ShoppingCart/>},
 
       { path: "*", element: <Navigate to="/404/" /> },
       // {path:"/404", element:<NotFound404/>},

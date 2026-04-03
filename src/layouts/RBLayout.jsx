@@ -33,6 +33,9 @@ const RBLayout = () => {
   // // Redux to read wishlist item
     const wishlistState = useSelector((state)=> state.wishlist)
     const username  = "";
+    
+    // // Redux to read cart item
+    const cartState = useSelector((state)=> state.cart)
 
 
   //  Load initial mode from localStorage
@@ -73,6 +76,7 @@ const RBLayout = () => {
             Welcome : {username}{" "}
             {/* <pre>{JSON.stringify(wishlistState.wishlistitem, null, 2)}</pre> */}
             <NavLink to="/wishlist" variant="link">Wishlist <Badge>{wishlistState?.wishlistItems?.length}</Badge></NavLink>{" "}
+            <NavLink to="/shopping-cart" variant="link">Cart <Badge>{cartState?.cartItems?.length}</Badge></NavLink>{" "}
             <Button onClick={handleLogout} className="me-2">
               Logout
             </Button>

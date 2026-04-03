@@ -6,6 +6,7 @@ import { api, fetchProducts } from "../api/Services";
 import { WishlistContext } from "../context/Context";
 import { ToastContainer, toast } from 'react-toastify';
 import AddToWishlist from "../components/AddToWishlist";
+import AddToCart from "../components/AddToCart";
 
 const AXIOS = () => {
   // for add to cart
@@ -106,9 +107,11 @@ const AXIOS = () => {
                         <Card.Title>{product.title}</Card.Title>
                       </Card.Body>
                       <Card.Footer className="d-flex justify-content-between bg-white">
-                        <Button size="sm" variant="outline-primary">
+                        {/* <Button size="sm" variant="outline-primary">
                           Add to Cart
-                        </Button>
+                        </Button> */}
+
+                        <AddToCart product={product} />
 
                         <AddToWishlist product={product} />
                         {/* <Button size="sm" variant="outline-success"
