@@ -17,6 +17,7 @@ import RBSpinners from "../../pages/react-bootstrap/RBSpinners";
 import RBAccordion from "../../pages/react-bootstrap/RBAccordion";
 import RBCarousel from "../../pages/react-bootstrap/RBCarousel";
 import SignIn from "../../pages/auth/SignIn";
+import SignUp from "../../pages/auth/SignUp";
 import RBDropdowns from "../../pages/react-bootstrap/RBDropdowns";
 import RBModal from "../../pages/react-bootstrap/RBModal";
 import RBNavbarOffcanvas from "../../pages/react-bootstrap/RBNavbarOffcanvas";
@@ -51,6 +52,7 @@ import ShoppingCart from "../../pages/ShoppingCart";
 
 export const routes = createBrowserRouter([
   { element: <AuthLayout />, children: [{ path: "/auth/signin", element: <SignIn /> }] },
+  { element: <AuthLayout />, children: [{ path: "/auth/signup", element: <SignUp /> }] },
 
   {
     element: <RBLayout />,

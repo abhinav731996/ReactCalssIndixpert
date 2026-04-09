@@ -162,15 +162,50 @@
 import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
+import { mockApi } from "../../api/Services";
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   localStorage.setItem("login", true);
+  //   navigate("/");
+  //   // sessionStorage.setItem("login", true);
+  //   // alert("Submited...")
+  // };
+
+  const getUsers = async () => {
+    const response = await mockApi.get("/users");
+    return response.data;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    localStorage.setItem("login", true);
-    navigate("/");
-    // sessionStorage.setItem("login", true);
-    // alert("Submited...")
+
+    try {
+      const email = e.target.email.value;
+      const password = e.target.password.value;
+
+      const users = await getUsers();
+
+      // user find karo
+      const user = users.find(
+        (u) => u.email === email && u.password === password,
+      );
+
+      if (user) {
+        localStorage.setItem("login", true);
+        localStorage.setItem("user", JSON.stringify(user));
+
+        alert("Login Successful ");
+        navigate("/");
+      } else {
+        alert("Invalid Email or Password ");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong!");
+    }
   };
   return (
     <div className="row justify-content-center">
@@ -207,8 +242,6 @@ const SignIn = () => {
                       type="email"
                       className="form-control"
                       name="email"
-                      value="myemail@gmail.com"
-                      id="email"
                       placeholder="name@example.com"
                       required
                     />
@@ -224,8 +257,6 @@ const SignIn = () => {
                       type="password"
                       className="form-control"
                       name="password"
-                      value="password"
-                      id="password"
                       placeholder="Password"
                       required
                     />
@@ -254,12 +285,12 @@ const SignIn = () => {
                 <hr className="mt-5 mb-4 border-secondary-subtle" />
                 <p className="m-0 text-secondary text-center">
                   Create a new account?{" "}
-                  <Button
-                    type="submit"
-                    className="primary text-decoration-none"
+                  <NavLink
+                    to="/auth/signup"
+                    className="link-primary text-decoration-none"
                   >
                     Sign up
-                  </Button>
+                  </NavLink>
                 </p>
               </div>
             </div>
