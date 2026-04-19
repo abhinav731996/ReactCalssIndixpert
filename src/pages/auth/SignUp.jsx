@@ -308,3 +308,4 @@ const registerUser = async (newUserData) => {
 };
 
 export default SignUp;
+
