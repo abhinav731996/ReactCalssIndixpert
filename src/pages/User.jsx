@@ -1,28 +1,36 @@
-import React, { useState, useCallback } from "react";
+import React from "react";
 
-// const Child = React.memo(({ handleClick }) => {
-//   console.log("Child Rendered");
-//   return <button onClick={handleClick}>Click Me</button>;
-// });
+const initialState = [
+  {
+    id: 1,
+    score: 0,
+    name: "abhinav",
+  },
+  {
+    id: 2,
+    score: 0,
+    name: "sahil",
+  },
+];
 
-function User() {
-  const [count, setCount] = useState(0);
-  const [num, setNum] = useState(0)
-
-  const handleClick = useCallback(() => {
-    console.log("Clicked");
-  }, []);
-
-  return (
-    <div>
-      <h1>{count}</h1>
-      <h2 className="bg-primary">abhi</h2>
-      <h2>{num}</h2>
-      <button onClick={() => setNum(num + 2)}>increment of 2</button>
-      <button onClick={() => setCount(count + 1)}>Increment</button>
-      {/* <Child handleClick={handleClick} /> */}
-    </div>
-  );
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "increase":
+      return state.map((player)=>{
+        if(player.id === action.id){
+          return{...player, score: player.score+1}
+        }
+      })
+      break;
+  
+    default:
+      break;
+  }
 }
+const User = () => {
+  return <div>
 
-export default User
+  </div>;
+};
+
+export default User;
