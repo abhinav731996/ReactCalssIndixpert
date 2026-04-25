@@ -43,9 +43,6 @@ const ClassWork = () => {
       </Accordion.Item>
     </Accordion>
     <hr />
-
-    
-
     </div>
   )
 }
